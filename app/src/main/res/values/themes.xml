@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.Budgo" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.Budgo" parent="Base.Theme.Budgo" />
+
+    <style name="TextAppearance.App.TextInputLayout" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textColor">@color/outline_color</item>
+    </style>
+
 </resources>
