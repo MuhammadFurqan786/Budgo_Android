@@ -13,19 +13,31 @@
         android:theme="@style/Theme.Budgo"
         tools:targetApi="31">
         <activity
-            android:name=".patient.activities.UserRegistrationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".common.activities.SplashActivity"
-            android:exported="true">
+            android:name=".patient.ui.home.HomeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_home">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
+        </activity>
+        <activity
+            android:name=".common.ui.TermActivity"
+            android:exported="false" />
+        <activity
+            android:name=".patient.ui.user.UserRegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".common.ui.SplashActivity"
+            android:exported="true">
+
         </activity>
     </application>
 

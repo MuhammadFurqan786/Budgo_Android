@@ -25,4 +25,35 @@
     <string name="phone_hint">+12 345 6789</string>
     <string name="dob_hint">MM/DD/YYYY</string>
     <string name="already_account">Already Have An Account? <u><b>Sign In</b></u></string>
+    <string name="terms">
+        .Lorem Ipsum is simply dummy text of the
+printing and  Lorem Ipsum is simply dummy text of \n
+        .Lorem Ipsum is simply dummy text of the
+printing and  Lorem Ipsum is simply dummy text of\n
+        .Lorem Ipsum is simply dummy text of the
+printing and  Lorem Ipsum is simply dummy text of\n
+        .Lorem Ipsum is simply dummy text of the
+printing and  Lorem Ipsum is simply dummy text of\n
+        .Lorem Ipsum is simply dummy text of the
+printing and  Lorem Ipsum is simply dummy text of\n
+        .Lorem Ipsum is simply dummy text of the
+printing and  Lorem Ipsum is simply dummy text of\n
+        .Lorem Ipsum is simply dummy text of the
+printing and  Lorem Ipsum is simply dummy text of\n
+        .Lorem Ipsum is simply dummy text of the
+printing and  Lorem Ipsum is simply dummy text of\n
+        .Lorem Ipsum is simply dummy text of the
+printing and  Lorem Ipsum is simply dummy text of\n
+        .Lorem Ipsum is simply dummy text of the
+printing and  Lorem Ipsum is simply dummy text of.\n
+        .Lorem Ipsum is simply dummy text of the
+        \n.
+        </string>
+    <string name="termsprivacytext">Terms of Services</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_menu">Menu</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_order">Order</string>
+    <string name="title_cart">Cart</string>
 </resources>

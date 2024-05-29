@@ -1,4 +1,4 @@
-package com.sokoldev.budgo.patient.activities
+package com.sokoldev.budgo.patient.ui.user
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

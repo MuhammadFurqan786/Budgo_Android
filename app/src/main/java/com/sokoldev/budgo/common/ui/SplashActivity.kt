@@ -1,4 +1,4 @@
-package com.sokoldev.budgo.common.activities
+package com.sokoldev.budgo.common.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
