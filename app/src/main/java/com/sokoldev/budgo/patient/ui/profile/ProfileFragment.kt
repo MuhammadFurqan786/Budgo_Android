@@ -1,14 +1,14 @@
 package com.sokoldev.budgo.patient.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.sokoldev.budgo.common.ui.SplashActivity
 import com.sokoldev.budgo.databinding.FragmentProfileBinding
-import com.sokoldev.budgo.patient.ui.order.OrderViewModel
 
 class ProfileFragment : Fragment() {
 
@@ -29,9 +29,15 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textProfile
-        profileViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+
+        binding.logoutButton.setOnClickListener {
+            startActivity(
+                Intent(
+                    context,
+                    SplashActivity::class.java
+                )
+            )
+            requireActivity().finish()
         }
         return root
     }

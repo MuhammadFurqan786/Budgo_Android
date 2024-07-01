@@ -34,5 +34,14 @@ class HomeActivity : AppCompatActivity() {
                 .setTopLeftCorner(CornerFamily.ROUNDED, radius)
                 .build()
 
+
+        val destination = intent.getIntExtra("destination", R.id.navigation_home)
+        if (navView.menu.findItem(destination) != null) {
+            navView.selectedItemId = destination
+        } else {
+            navView.selectedItemId = R.id.navigation_home
+        }
+
+
     }
 }

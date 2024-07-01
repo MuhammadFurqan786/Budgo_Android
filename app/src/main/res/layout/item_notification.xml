@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/notification_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/image__2"
+        app:shapeAppearanceOverlay="@style/circleImageViewRounded"
+        app:strokeWidth="1dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/notification_message"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginHorizontal="16dp"
+        android:layout_toEndOf="@id/notification_image"
+        android:fontFamily="@font/nunito_regular"
+        android:text="Check Driver Details"
+        android:textColor="@color/primary" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/notification_image"
+        android:layout_marginVertical="8dp"
+        android:background="@color/light_extra" />
+
+</RelativeLayout>

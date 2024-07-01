@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.sokoldev.budgo.databinding.FragmentHomeBinding
+import com.sokoldev.budgo.patient.adapter.BrandAdapter
+import com.sokoldev.budgo.patient.adapter.CategoryAdapter
 
 class HomeFragment : Fragment() {
 
@@ -28,11 +29,22 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        homeViewModel.getCategoriesList()
+        homeViewModel.getBrandsList()
+
+        initObserver(homeViewModel)
         return root
+    }
+
+    private fun initObserver(homeViewModel: HomeViewModel) {
+        homeViewModel.listCategory.observe(viewLifecycleOwner) {
+            val adapter = CategoryAdapter(it)
+            binding.recyclerviewCategories.adapter = adapter
+        }
+        homeViewModel.listBrands.observe(viewLifecycleOwner) {
+            val adapter = BrandAdapter(it)
+            binding.recyclerviewBrands.adapter = adapter
+        }
     }
 
     override fun onDestroyView() {

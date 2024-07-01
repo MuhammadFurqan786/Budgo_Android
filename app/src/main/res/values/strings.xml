@@ -3,6 +3,7 @@
     <string name="get_started">Get Started</string>
     <string name="patient">Patient</string>
     <string name="patient_card">Patient Card</string>
+    <string name="caregiver_card">CareGiver Card</string>
     <string name="care_giver">CareGiver</string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
@@ -25,6 +26,7 @@
     <string name="phone_hint">+12 345 6789</string>
     <string name="dob_hint">MM/DD/YYYY</string>
     <string name="already_account">Already Have An Account? <u><b>Sign In</b></u></string>
+    <string name="no_account">Don\'t Have An Account? <u><b>Sign Up</b></u></string>
     <string name="terms">
         .Lorem Ipsum is simply dummy text of the
 printing and  Lorem Ipsum is simply dummy text of \n
@@ -56,4 +58,55 @@ printing and  Lorem Ipsum is simply dummy text of.\n
     <string name="title_profile">Profile</string>
     <string name="title_order">Order</string>
     <string name="title_cart">Cart</string>
+    <string name="title_tasks">Tasks</string>
+    <string name="title_schedule">Scheduling</string>
+    <string name="title_account">Account</string>
+    <string name="title_earning">Earning</string>
+    <string name="categories">Categories</string>
+    <string name="new_products">New Products</string>
+    <string name="popular_flower">Popular Flower</string>
+    <string name="popular_edibles">Popular Edibles</string>
+    <string name="top_seller">Top Seller</string>
+    <string name="dummy">Lorem Ipsum is simply dummy text of the printing and Lorem Ipsum is simply dummy text of.</string>
+    <string name="quantity">Quantity</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="order">Order</string>
+    <string name="checkout">Checkout</string>
+    <string name="no_payemt_method">You have not added any payment Method yet please add</string>
+    <string name="add_card">Add Card</string>
+    <string name="select_payemnt_method">Select Your Preferred Payment Method</string>
+    <string name="master">Master Card</string>
+    <string name="card_number">Card Number</string>
+    <string name="xxxx_xxxx_xxxx_xxxx">XXXX XXXX XXXX XXXX</string>
+    <string name="exp_date">Exp Date</string>
+    <string name="dd_mm_yy">DD MM YY</string>
+    <string name="xxx">XXX</string>
+    <string name="cvc_code">CVC Code</string>
+    <string name="visa">Visa Card</string>
+    <string name="paypal">Paypal</string>
+    <string name="proceed">proceed</string>
+    <string name="done">DONE</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="request_for_jobs">Request For Jobs</string>
+    <string name="taking_offers">• Taking Offers</string>
+    <string name="go">GO</string>
+    <string name="product_image">Product Image</string>
+    <string name="leaving">Leaving</string>
+    <string name="type_message">Type Message</string>
+    <string name="drop_off_instruction">Drop off Instruction</string>
+    <string name="take_a_clear_photo">Take A Clear Photo</string>
+    <string name="complete_order">Complete Order</string>
+    <string name="driving_license">Driving License</string>
+    <string name="caregiver_registration">CareGiver Registraion</string>
+    <string name="login">Login</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="password">Password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="agree_with_policy">Agree With Policy</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="manage_your_form_1099">Manage your <b>Form 1099</b></string>
 </resources>

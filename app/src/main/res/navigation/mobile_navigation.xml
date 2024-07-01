@@ -33,6 +33,18 @@
         android:id="@+id/navigation_cart"
         android:name="com.sokoldev.budgo.patient.ui.cart.CartFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_cart_to_cancellationFragment"
+            app:destination="@id/cancellationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cancellationFragment"
+        android:name="com.sokoldev.budgo.patient.ui.cart.CancellationFragment"
+        android:label="CancellationFragment" >
+        <action
+            android:id="@+id/action_cancellationFragment_to_navigation_cart"
+            app:destination="@id/navigation_cart" />
+    </fragment>
 
 </navigation>

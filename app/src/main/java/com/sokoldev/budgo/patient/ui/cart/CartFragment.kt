@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.sokoldev.budgo.R
 import com.sokoldev.budgo.databinding.FragmentCartBinding
-import com.sokoldev.budgo.patient.ui.order.OrderViewModel
+import com.sokoldev.budgo.patient.adapter.CartAdapter
 
 class CartFragment : Fragment() {
 
@@ -29,11 +30,24 @@ class CartFragment : Fragment() {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textCart
-        cartViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        cartViewModel.getCartList()
+        initObserver(cartViewModel)
+
+
+        binding.apply {
+            checkoutButton.setOnClickListener {
+                findNavController().navigate(R.id.action_navigation_cart_to_cancellationFragment)
+            }
+
         }
         return root
+    }
+
+    private fun initObserver(cartViewModel: CartViewModel) {
+        cartViewModel.listCart.observe(viewLifecycleOwner) {
+            val adapter = CartAdapter(it)
+            binding.recyclerviewCart.adapter = adapter
+        }
     }
 
     override fun onDestroyView() {

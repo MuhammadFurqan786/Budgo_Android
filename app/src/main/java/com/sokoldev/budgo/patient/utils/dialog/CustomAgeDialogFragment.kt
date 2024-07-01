@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.button.MaterialButton
-import com.sokoldev.budgo.MainActivity
 import com.sokoldev.budgo.R
+import com.sokoldev.budgo.patient.ui.user.UserRegistrationActivity
 
 class CustomAgeDialogFragment : DialogFragment() {
 
@@ -32,7 +32,7 @@ class CustomAgeDialogFragment : DialogFragment() {
         }
 
         view.findViewById<MaterialButton>(R.id.button_yes).setOnClickListener {
-            val intent = Intent(requireContext(), MainActivity::class.java)
+            val intent = Intent(requireContext(), UserRegistrationActivity::class.java)
             startActivity(intent)
             dismiss()
         }

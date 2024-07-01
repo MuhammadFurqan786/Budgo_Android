@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".patient.ui.menu.ProductDetailsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@drawable/toolbar_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <!-- Account title -->
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginEnd="34dp"
+                android:contentDescription="@string/back_button"
+                android:src="@drawable/baseline_arrow_back_24"
+                app:tint="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_home"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/nunito_bold"
+                android:gravity="center"
+                android:text="Product Detail"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-12dp"
+            android:background="@drawable/bg_white_rounded"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/relative">
+
+            <ImageView
+                android:id="@+id/product_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:contentDescription="Product Image"
+                android:scaleType="fitXY"
+                android:src="@drawable/image__2" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_rounded"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp">
+
+                    <LinearLayout
+                        android:id="@+id/linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/TextAppearance.AppCompat.Large"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="1.3"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="Booking Details"
+                            android:textColor="@color/black" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/product_price"
+                            style="@style/TextAppearance.AppCompat.Medium"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight=".6"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="$50.00"
+                            android:textColor="@color/text_price" />
+
+                    </LinearLayout>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/product_name"
+                        style="@style/TextAppearance.AppCompat.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/linear"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="Product Name"
+                        android:textColor="@color/text_color" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/product_desc"
+                        style="@style/TextAppearance.AppCompat.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/product_name"
+                        android:fontFamily="@font/nunito_regular"
+                        android:text="@string/dummy"
+                        android:textColor="@color/text_light" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/dispensary_category"
+                        style="@style/TextAppearance.AppCompat.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/product_desc"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/nunito_regular"
+                        android:text="Hybrid"
+                        android:textColor="@color/text_color" />
+
+
+                    <LinearLayout
+                        android:id="@+id/linear_values"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/dispensary_category"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="2">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/t_value"
+                            style="@style/TextAppearance.AppCompat.Caption"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight=".4"
+                            android:background="@color/button_background"
+                            android:fontFamily="@font/nunito_bold"
+                            android:gravity="center"
+                            android:paddingVertical="2dp"
+                            android:text="T: 20.20%"
+                            android:textColor="@color/button_text"
+                            app:cornerRadius="4dp"
+                            app:strokeColor="@color/light_sky"
+                            app:strokeWidth=".5dp" />
+
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight=".1" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/c_value"
+                            style="@style/TextAppearance.AppCompat.Caption"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight=".4"
+                            android:background="@color/button_background"
+                            android:fontFamily="@font/nunito_bold"
+                            android:gravity="center"
+                            android:paddingVertical="2dp"
+                            android:text="C: 20.20%"
+                            android:textColor="@color/button_text"
+                            app:cornerRadius="4dp"
+                            app:strokeColor="@color/light_sky"
+                            app:strokeWidth=".5dp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/line1"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_below="@+id/linear_values"
+                        android:layout_marginVertical="16dp"
+                        android:src="@drawable/line" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/driver_text"
+                        style="@style/TextAppearance.AppCompat.Large"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/line1"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="quantity"
+                        android:textColor="@color/text_color" />
+
+
+                    <LinearLayout
+                        android:id="@+id/linear_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/driver_text"
+                        android:layout_marginHorizontal="4dp"
+                        android:layout_marginVertical="8dp"
+                        android:elevation="5dp"
+                        android:background="@color/button_background"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp">
+
+
+                        <ImageView
+                            android:id="@+id/buttonMinus"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="4dp"
+                            android:padding="3dp"
+                            android:src="@drawable/ic_minus" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/driverName"
+                            style="@style/TextAppearance.AppCompat.Medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
+                            android:fontFamily="@font/nunito_bold"
+                            android:layout_toEndOf="@id/driver_image"
+                            android:text="2"
+                            android:textColor="@color/text_color" />
+
+
+
+
+                        <ImageView
+                            android:id="@+id/buttonPlus"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="4dp"
+                            android:padding="3dp"
+                            android:src="@drawable/ic_plus" />
+
+
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/line2"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_below="@id/linear_quantity"
+                        android:layout_marginVertical="16dp"
+                        android:src="@drawable/line" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/addToCart"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginVertical="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_bg"
+            android:text="@string/add_to_cart"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

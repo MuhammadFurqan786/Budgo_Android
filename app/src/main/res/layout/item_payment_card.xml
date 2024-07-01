@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/visaCardLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:layout_marginHorizontal="2dp"
+    android:background="@drawable/bg_white_rounded_all"
+    android:elevation="4dp"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/payment_image"
+        android:layout_width="80dp"
+        android:layout_height="70dp"
+        android:layout_centerVertical="true"
+        android:layout_marginVertical="16dp"
+        android:src="@drawable/ic_visa" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/paymentType"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_toEndOf="@id/payment_image"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/visa"
+        android:textColor="@color/black" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/payment_number"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/paymentType"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/payment_image"
+        android:fontFamily="@font/nunito_bold"
+        android:text="**** **** **** 8235"
+        android:textColor="@color/black" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/selected"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="45dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_selected"
+        android:visibility="gone" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/editButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_toStartOf="@id/deleteButton"
+        android:padding="4dp"
+        android:src="@drawable/ic_edit" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/deleteButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_delete_red" />
+
+</RelativeLayout>

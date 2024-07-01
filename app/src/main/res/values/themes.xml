@@ -4,12 +4,31 @@
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.Budgo" parent="Base.Theme.Budgo" />
 
     <style name="TextAppearance.App.TextInputLayout" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textColor">@color/outline_color</item>
+    </style>
+
+    <style name="circleImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="roundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15%</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal" type="color">@color/light_extra</item>
+        <item name="colorControlActivated" type="color">@color/color_yellow</item>
+        <item name="android:numStars" type="integer">5</item>
+        <item name="android:stepSize" type="integer">1</item>
     </style>
 
 </resources>

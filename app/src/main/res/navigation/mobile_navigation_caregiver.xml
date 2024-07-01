@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_caregiver"
+    app:startDestination="@+id/navigation_task">
+
+    <fragment
+        android:id="@+id/navigation_task"
+        android:name="com.sokoldev.budgo.caregiver.ui.task.TaskFragment"
+        android:label="@string/title_tasks"
+        tools:layout="@layout/fragment_task" />
+
+    <fragment
+        android:id="@+id/navigation_schedule"
+        android:name="com.sokoldev.budgo.caregiver.ui.schedule.ScheduleFragment"
+        android:label="@string/title_schedule"
+        tools:layout="@layout/fragment_schedule" />
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="com.sokoldev.budgo.caregiver.ui.account.AccountFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_navigation_account_to_personalInfoFragment"
+            app:destination="@id/personalInfoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_earning"
+        android:name="com.sokoldev.budgo.caregiver.ui.earning.EarningFragment"
+        android:label="@string/title_earning"
+        tools:layout="@layout/fragment_earning" />
+    <fragment
+        android:id="@+id/personalInfoFragment"
+        android:name="com.sokoldev.budgo.caregiver.ui.account.PersonalInfoFragment"
+        android:label="fragment_personal_info"
+        tools:layout="@layout/fragment_personal_info" />
+</navigation>

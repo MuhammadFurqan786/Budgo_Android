@@ -6,4 +6,13 @@
     <color name="outline_color">#3B008080</color>
     <color name="primary">#1F4536</color>
     <color name="primary_light">#D1ECCD</color>
+    <color name="text_light">#5D5D5D</color>
+    <color name="text_price">#000080</color>
+    <color name="light_sky">#7FD0D6</color>
+    <color name="button_background">#F3F6F6</color>
+    <color name="text_color">#222222</color>
+    <color name="light_extra">#CACACA</color>
+    <color name="color_green">#07663E</color>
+    <color name="color_yellow">#FBC02D</color>
+
 </resources>
