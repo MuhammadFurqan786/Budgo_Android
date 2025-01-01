@@ -1,4 +1,4 @@
-package com.sokoldev.budgo.common.models
+package com.sokoldev.budgo.common.data.models
 
 data class ChatMessage(
     val message: String,
