@@ -6,9 +6,26 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:id="@+id/main"
-    tools:context=".patient.ui.user.UserRegistrationActivity">
+    tools:context=".common.ui.user.LoginActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Small.Circle"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/primary" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -211,4 +228,7 @@
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
+
 </ScrollView>

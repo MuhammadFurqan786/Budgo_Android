@@ -1,5 +1,6 @@
 package com.sokoldev.budgo.patient.ui.cart
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,7 +31,7 @@ class CartFragment : Fragment() {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        cartViewModel.getCartList()
+        cartViewModel.getCartItems()
         initObserver(cartViewModel)
 
 
@@ -38,15 +39,29 @@ class CartFragment : Fragment() {
             checkoutButton.setOnClickListener {
                 findNavController().navigate(R.id.action_navigation_cart_to_cancellationFragment)
             }
-
         }
         return root
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initObserver(cartViewModel: CartViewModel) {
-        cartViewModel.listCart.observe(viewLifecycleOwner) {
-            val adapter = CartAdapter(it)
-            binding.recyclerviewCart.adapter = adapter
+        // Initialize the adapter outside of the observer
+        val adapter = CartAdapter(emptyList(), cartViewModel) // Initialize with an empty list
+        binding.recyclerviewCart.adapter = adapter
+
+        // Observe the cart items
+        cartViewModel.listCart.observe(viewLifecycleOwner) { cartItems ->
+            // Update the adapter with the new list of cart items
+            adapter.updateCartItems(cartItems)
+
+            if (cartItems != null) {
+                var price = 0
+                for (item in cartItems) {
+                    price += item.productPrice
+                }
+                binding.total.text = "$$price"
+            }
+
         }
     }
 

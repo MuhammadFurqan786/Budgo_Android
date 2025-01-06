@@ -3,22 +3,30 @@ package com.sokoldev.budgo.patient.ui.order
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sokoldev.budgo.R
-import com.sokoldev.budgo.patient.models.Booking
+import androidx.lifecycle.viewModelScope
+import com.sokoldev.budgo.common.data.models.response.MyBookingsResponse
+import com.sokoldev.budgo.common.data.remote.network.ApiResponse
+import com.sokoldev.budgo.common.data.repo.AppRepository
+import kotlinx.coroutines.launch
 
 class OrderViewModel : ViewModel() {
 
-    private val _listBooking: MutableLiveData<List<Booking>> = MutableLiveData()
-    val listBooking: LiveData<List<Booking>>
-        get() = _listBooking
+    private val appRepository = AppRepository()
+
+    private val _apiResponse: MutableLiveData<ApiResponse<MyBookingsResponse>> = MutableLiveData()
+    val apiResponse: LiveData<ApiResponse<MyBookingsResponse>>
+        get() = _apiResponse
 
 
-    fun getBookingList() {
-        val arraylist = ArrayList<Booking>()
-        for (i in 1..8) {
-            arraylist.add(Booking(R.drawable.image_1, "Product $i", 50, "Hybrid", 2, "Category $i"))
+    fun getMyBookings(token: String) {
+        viewModelScope.launch {
+            _apiResponse.value = ApiResponse.Loading
+            val response = appRepository.myBookingsApi(token)
+            _apiResponse.value = response
         }
-        _listBooking.value = arraylist
     }
+
+
+
 
 }

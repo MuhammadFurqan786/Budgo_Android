@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class LoginResponse(
     @SerializedName("data")
-    val `data`: com.sokoldev.budgo.common.data.models.response.LoginData,
+    val `data`: LoginData,
     @SerializedName("message")
     val message: String,
     @SerializedName("status")

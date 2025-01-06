@@ -1,4 +1,4 @@
-package com.sokoldev.budgo.patient.utils.dialog
+package com.sokoldev.budgo.patient.dialog
 
 import android.app.Dialog
 import android.content.Context

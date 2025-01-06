@@ -1,4 +1,4 @@
-package com.sokoldev.learnicity.utils
+package com.sokoldev.budgo.common.utils
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Service
@@ -13,7 +13,7 @@ import android.os.Bundle
 import android.os.IBinder
 import android.provider.Settings
 import android.util.Log
-import com.sokoldev.learnicity.R
+import com.sokoldev.budgo.R
 import java.io.IOException
 import java.util.Locale
 

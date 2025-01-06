@@ -10,5 +10,9 @@ class PreferenceKeys {
 
         const val PREF_USER_ID = "user_id"
         const val PREF_USER_TYPE = "user_type"
+        const val PREF_USER_TOKEN = "user_token"
+
+        const val KEY_LATITUDE = "latitude"
+        const val KEY_LONGITUDE = "longitude"
     }
 }

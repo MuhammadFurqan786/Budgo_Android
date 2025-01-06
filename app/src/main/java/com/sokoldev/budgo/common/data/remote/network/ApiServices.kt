@@ -1,5 +1,6 @@
 package com.sokoldev.budgo.common.data.remote.network
 
+import com.sokoldev.budgo.common.data.models.response.BookingDetailsResponse
 import com.sokoldev.budgo.common.data.models.response.CategoryProductResponse
 import com.sokoldev.budgo.common.data.models.response.DefaultResponse
 import com.sokoldev.budgo.common.data.models.response.ForgetPasswordResponse
@@ -27,7 +28,7 @@ interface ApiServices {
 
     @Multipart
     @POST("auth/signup")
-    suspend fun signupUserApi(
+    suspend fun signupCareGiver(
         @Part("name") name: RequestBody,
         @Part("email") email: RequestBody,
         @Part("phone") phone: RequestBody,
@@ -38,26 +39,38 @@ interface ApiServices {
         @Part("type") type: RequestBody,
         @Part drivingLicenseFrontSide: MultipartBody.Part,
         @Part drivingLicenseBackSide: MultipartBody.Part,
-        @Part patientCardFrontSide: MultipartBody.Part,
-        @Part patientCardBackSide: MultipartBody.Part,
         @Part careGiverCardFrontSide: MultipartBody.Part,
         @Part careGiverCardBackSide: MultipartBody.Part,
-    ): Response<com.sokoldev.budgo.common.data.models.response.DefaultResponse>
+    ): Response<DefaultResponse>
 
 
     @Multipart
+    @POST("auth/signup")
+    suspend fun signupPatient(
+        @Part("name") name: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("phone") phone: RequestBody,
+        @Part("dob") dob: RequestBody,
+        @Part("latitude") latitude: RequestBody,
+        @Part("longitude") longitude: RequestBody,
+        @Part("password") password: RequestBody,
+        @Part("type") type: RequestBody,
+        @Part patientCardFrontSide: MultipartBody.Part,
+        @Part patientCardBackSide: MultipartBody.Part
+    ): Response<DefaultResponse>
+
+    @FormUrlEncoded
     @POST("auth/login")
     suspend fun loginUserApi(
-        @Part("login") name: RequestBody,
-        @Part("password") password: RequestBody,
-        @Part careGiverCardBackSide: MultipartBody.Part,
-    ): Response<com.sokoldev.budgo.common.data.models.response.LoginResponse>
+        @Field("login") email: String,
+        @Field("password") password: String,
+    ): Response<LoginResponse>
 
 
     @GET("auth/forget-password/{email}")
     suspend fun forgotUserPasswordApi(
         @Path("email") email: String,
-    ): Response<com.sokoldev.budgo.common.data.models.response.ForgetPasswordResponse>
+    ): Response<ForgetPasswordResponse>
 
 
     @FormUrlEncoded
@@ -65,14 +78,14 @@ interface ApiServices {
     suspend fun resetUserPasswordApi(
         @Field("email") email: String,
         @Field("password") password: String,
-    ): Response<com.sokoldev.budgo.common.data.models.response.DefaultResponse>
+    ): Response<DefaultResponse>
 
 
     @FormUrlEncoded
     @POST("auth/logout")
     suspend fun logoutUserApi(
         @Header("Authorization") token: String
-    ): Response<com.sokoldev.budgo.common.data.models.response.DefaultResponse>
+    ): Response<DefaultResponse>
 
 
     @FormUrlEncoded
@@ -81,7 +94,7 @@ interface ApiServices {
         @Header("Authorization") token: String,
         @Field("old_password") oldPassword: String,
         @Field("new_password") newPassword: String,
-    ): Response<com.sokoldev.budgo.common.data.models.response.DefaultResponse>
+    ): Response<DefaultResponse>
 
     @FormUrlEncoded
     @POST("auth/update-fcm-token")
@@ -89,20 +102,20 @@ interface ApiServices {
         @Header("Authorization") token: String,
         @Field("device_type") deviceType: String,
         @Field("token") fcmToken: String,
-    ): Response<com.sokoldev.budgo.common.data.models.response.DefaultResponse>
+    ): Response<DefaultResponse>
 
 
     @POST("auth/delete-account")
     suspend fun deleteAccountApi(
         @Header("Authorization") token: String
-    ): Response<com.sokoldev.budgo.common.data.models.response.DefaultResponse>
+    ): Response<DefaultResponse>
 
 
     @POST("auth/change-online-status")
     suspend fun onlineStatusApi(
         @Header("Authorization") token: String,
         @Field("status") status: Int,
-    ): Response<com.sokoldev.budgo.common.data.models.response.DefaultResponse>
+    ): Response<DefaultResponse>
 
 
     /* App Api*/
@@ -110,33 +123,32 @@ interface ApiServices {
     @GET("app/home")
     suspend fun homeScreenApi(
         @Header("Authorization") token: String
-    ): Response<com.sokoldev.budgo.common.data.models.response.HomeScreenApiResponse>
+    ): Response<HomeScreenApiResponse>
 
 
     @GET("app/menu")
     suspend fun menuScreenApi(
-        @Header("Authorization") token: String
-    ): Response<com.sokoldev.budgo.common.data.models.response.MenuScreenApiResponse>
-
+        @Header("Authorization") token: String,
+    ): Response<MenuScreenApiResponse>
 
     @GET("app/my-bookings")
     suspend fun myBookingsApi(
         @Header("Authorization") token: String
-    ): Response<com.sokoldev.budgo.common.data.models.response.MyBookingsResponse>
+    ): Response<MyBookingsResponse>
 
 
     @GET("app/booking-details/{id}")
     suspend fun bookingDetailsByBookingIdApi(
         @Header("Authorization") token: String,
         @Path("id") bookingId: String
-    ): Response<com.sokoldev.budgo.common.data.models.response.MyBookingsResponse>
+    ): Response<BookingDetailsResponse>
 
 
     @GET("app/category-products/{category_id}")
     suspend fun productByCategoryIdApi(
         @Header("Authorization") token: String,
         @Path("category_id") categoryId: String
-    ): Response<com.sokoldev.budgo.common.data.models.response.CategoryProductResponse>
+    ): Response<CategoryProductResponse>
 
 
 

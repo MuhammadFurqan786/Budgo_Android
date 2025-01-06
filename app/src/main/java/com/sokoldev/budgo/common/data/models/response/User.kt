@@ -43,7 +43,7 @@ data class User(
     @SerializedName("profile_image")
     val profileImage: String,
     @SerializedName("token")
-    val token: Any,
+    val token: String,
     @SerializedName("type")
     val type: String
 )

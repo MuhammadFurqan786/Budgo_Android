@@ -2,13 +2,14 @@ package com.sokoldev.budgo.patient.ui.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.sokoldev.budgo.R
 import com.sokoldev.budgo.databinding.ActivityHomeBinding
+
 
 class HomeActivity : AppCompatActivity() {
 
@@ -22,9 +23,11 @@ class HomeActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_home)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_activity_home) as NavHostFragment?
+        val navCo = navHostFragment!!.navController
 
-        navView.setupWithNavController(navController)
+        navView.setupWithNavController(navCo)
 
         val radius = resources.getDimension(R.dimen.radius_small)
         val bottomNavigationViewBackground = navView.background as MaterialShapeDrawable

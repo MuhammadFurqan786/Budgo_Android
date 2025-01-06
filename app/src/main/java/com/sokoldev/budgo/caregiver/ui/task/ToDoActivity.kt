@@ -20,7 +20,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.sokoldev.budgo.R
 import com.sokoldev.budgo.databinding.ActivityToDoBinding
-import com.sokoldev.budgo.patient.utils.dialog.OrderDialogFragment
+import com.sokoldev.budgo.patient.dialog.OrderDialogFragment
 
 class ToDoActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityToDoBinding

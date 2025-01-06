@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sokoldev.budgo.R
-import com.sokoldev.budgo.patient.models.Category
 
-class CategoryAdapter(private val categoryList: List<Category>) :
+class CategoryAdapter(private val categoryList: List<com.sokoldev.budgo.common.data.models.response.Category>) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
     private lateinit var context: Context
 
@@ -29,9 +29,9 @@ class CategoryAdapter(private val categoryList: List<Category>) :
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val currentItem = categoryList[position]
-        currentItem.categoryImage?.let { holder.categoryImage.setImageResource(it) }
-        currentItem.categoryName?.let { holder.categoryName.text = it }
-        currentItem.dispensaryName?.let { holder.dispensaryName.text = it }
+        currentItem.categoryImage.let { Glide.with(context).load(it).into(holder.categoryImage) }
+        currentItem.categoryName.let { holder.categoryName.text = it }
+        currentItem.dispensory.let { holder.dispensaryName.text = it }
 
         holder.itemView.setOnClickListener {
 //            val intent = Intent(context, DetailActivity::class.java)

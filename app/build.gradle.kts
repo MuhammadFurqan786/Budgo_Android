@@ -55,6 +55,21 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.com.github.chinalwb)
     implementation(libs.com.github.philjay)
+    implementation(libs.com.google.gson)
+    implementation(libs.com.squareup.retrofit2.retrofit)
+    implementation(libs.com.squareup.retrofit2.retrofit.converter)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.com.squareup.okhttp3)
+    implementation(libs.com.github.bumptec.glide)
+
+    //room
+    implementation(libs.androidx.room)
+    annotationProcessor(libs.room.compiler)
+
+    //spin kit loader
+    implementation(libs.android.spinkit)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

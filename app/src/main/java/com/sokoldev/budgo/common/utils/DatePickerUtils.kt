@@ -1,4 +1,4 @@
-package com.sokoldev.budgo.patient.utils
+package com.sokoldev.budgo.common.utils
 
 import android.app.DatePickerDialog
 import android.content.Context

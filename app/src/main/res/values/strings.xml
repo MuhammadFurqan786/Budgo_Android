@@ -109,4 +109,11 @@ printing and  Lorem Ipsum is simply dummy text of.\n
     <string name="agree_with_policy">Agree With Policy</string>
     <string name="payment_method">Payment Method</string>
     <string name="manage_your_form_1099">Manage your <b>Form 1099</b></string>
+
+    <string name="action_settings">Open Setting</string>
+    <string name="GPSAlertDialogMessage">Allow Gps for Location</string>
+    <string name="GPSAlertDialogTitle">Required Gps</string>
+    <string name="cancel">Cancel</string>
+
+
 </resources>

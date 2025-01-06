@@ -9,7 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.sokoldev.budgo.databinding.ActivityMakePaymentBinding
 import com.sokoldev.budgo.patient.adapter.PaymentMethodAdapter
-import com.sokoldev.budgo.patient.utils.dialog.PaymentDialogFragment
+import com.sokoldev.budgo.patient.dialog.PaymentDialogFragment
 
 class MakePaymentActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMakePaymentBinding

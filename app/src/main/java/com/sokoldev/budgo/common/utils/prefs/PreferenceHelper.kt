@@ -2,6 +2,8 @@ package com.sokoldev.budgo.common.utils.prefs
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.sokoldev.budgo.common.data.models.response.User
 
 class PreferenceHelper {
     companion object {
@@ -40,21 +42,21 @@ class PreferenceHelper {
     }
 
 
-//    fun saveCurrentUser(user: User?) {
-//        val gson = Gson()
-//        val json = gson.toJson(user)
-//        preferences.edit().putString(PreferenceKeys.KEY_PREF_USER, json).apply()
-//
-//    }
+    fun saveCurrentUser(user: User?) {
+        val gson = Gson()
+        val json = gson.toJson(user)
+        preferences.edit().putString(PreferenceKeys.KEY_PREF_USER, json).apply()
 
-//    fun getCurrentUser(): User? {
-//        val gson = Gson()
-//        val json = preferences.getString(PreferenceKeys.KEY_PREF_USER, null)
-//        json?.let {
-//            return gson.fromJson(json, User::class.java)
-//        }
-//        return null
-//    }
+    }
+
+    fun getCurrentUser(): User? {
+        val gson = Gson()
+        val json = preferences.getString(PreferenceKeys.KEY_PREF_USER, null)
+        json?.let {
+            return gson.fromJson(json, User::class.java)
+        }
+        return null
+    }
 
     fun saveBooleanValue(key: String, value: Boolean) {
         preferences.edit().putBoolean(key, value).apply()

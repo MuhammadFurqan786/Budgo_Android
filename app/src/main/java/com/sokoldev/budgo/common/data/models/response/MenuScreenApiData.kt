@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class MenuScreenApiData(
     @SerializedName("new_products")
-    val newProducts: List<com.sokoldev.budgo.common.data.models.response.Product>,
+    val newProducts: List<Product>,
     @SerializedName("popular_edibles")
-    val popularEdibles: List<com.sokoldev.budgo.common.data.models.response.PopularEdible>,
+    val popularEdibles: List<Product>,
     @SerializedName("popular_flowers")
-    val popularFlowers: List<com.sokoldev.budgo.common.data.models.response.PopularFlower>,
+    val popularFlowers: List<Product>,
     @SerializedName("top_seller")
-    val topSeller: List<com.sokoldev.budgo.common.data.models.response.TopSeller>
+    val topSeller: List<Product>
 )

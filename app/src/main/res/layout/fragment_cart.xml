@@ -90,6 +90,7 @@
                 android:textColor="@color/text_light" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/total"
                 style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

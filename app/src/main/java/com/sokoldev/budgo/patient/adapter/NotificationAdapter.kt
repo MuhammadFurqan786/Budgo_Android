@@ -17,7 +17,7 @@ import com.sokoldev.budgo.common.utils.prefs.PreferenceHelper
 import com.sokoldev.budgo.patient.models.Notification
 import com.sokoldev.budgo.patient.ui.home.HomeActivity
 import com.sokoldev.budgo.patient.ui.order.BookingDetailsActivity
-import com.sokoldev.budgo.patient.utils.dialog.DriverDialogFragment
+import com.sokoldev.budgo.patient.dialog.DriverDialogFragment
 
 class NotificationAdapter(
     private val notificationList: List<Notification>,

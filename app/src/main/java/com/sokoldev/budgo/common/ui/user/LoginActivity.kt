@@ -1,22 +1,39 @@
 package com.sokoldev.budgo.common.ui.user
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.sokoldev.budgo.R
 import com.sokoldev.budgo.caregiver.ui.DashboardActivity
 import com.sokoldev.budgo.caregiver.ui.user.CaregiverRegistrationActivity
+import com.sokoldev.budgo.common.data.remote.network.ApiResponse
+import com.sokoldev.budgo.common.utils.Global
 import com.sokoldev.budgo.common.utils.prefs.PreferenceHelper
+import com.sokoldev.budgo.common.utils.prefs.PreferenceKeys
+import com.sokoldev.budgo.common.viewmodels.UserViewModel
 import com.sokoldev.budgo.databinding.ActivityLoginBinding
 import com.sokoldev.budgo.patient.ui.home.HomeActivity
 import com.sokoldev.budgo.patient.ui.user.UserRegistrationActivity
+import java.io.File
+import java.io.FileOutputStream
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var helper: PreferenceHelper
+    private lateinit var viewModel: UserViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,15 +45,13 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
         helper = PreferenceHelper.getPref(this)
+        viewModel = ViewModelProvider(this)[UserViewModel::class.java]
+
+
+
         val isPatientUser = helper.isPatientUser()
         binding.continueButton.setOnClickListener {
-            if (isPatientUser) {
-                val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-                startActivity(intent)
-            } else {
-                val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
-                startActivity(intent)
-            }
+            loginUser()
         }
 
         binding.signup.setOnClickListener {
@@ -49,5 +64,99 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        initObserver()
+
     }
+
+
+    private fun initObserver() {
+        viewModel.apiResponseLogin.observe(this, Observer {
+            when (it) {
+                is ApiResponse.Success -> {
+                    binding.spinKit.visibility = View.GONE
+                    if (it.data.data != null) {
+
+                        val user = it.data.data.user
+                        helper.saveCurrentUser(user)
+                        helper.saveStringValue(PreferenceKeys.PREF_USER_TOKEN, it.data.data.token)
+                        helper.setUserLogin(true)
+
+                        Log.d("TOOKEN",""+it.data.data.token)
+                        Log.d("TOOKEN",user.toString())
+                        Global.showMessage(
+                            binding.root.rootView,
+                            it.data.message,
+                            Snackbar.LENGTH_SHORT
+                        )
+                        val userType = it.data.data.user.type
+                        if (userType == "1") {
+                            val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
+                            startActivity(intent)
+                        }
+
+
+                    } else {
+                        Global.showErrorMessage(
+                            binding.root.rootView,
+                            it.data.message,
+                            Snackbar.LENGTH_SHORT
+                        )
+                    }
+                }
+
+                is ApiResponse.Error -> {
+                    Global.showErrorMessage(
+                        binding.root.rootView,
+                        it.errorMessage,
+                        Snackbar.LENGTH_SHORT
+                    )
+                    binding.spinKit.visibility = View.GONE
+                }
+
+                ApiResponse.Loading -> {
+                    binding.spinKit.visibility = View.VISIBLE
+                }
+            }
+
+        })
+    }
+
+    private fun loginUser() {
+        val email = binding.edEmail.text.toString().trim()
+        val password = binding.edPassword.text.toString().trim()
+
+        if (email.isEmpty()) {
+            binding.edEmail.error = "Please add your email address"
+            return
+        } else if (password.length < 8) {
+            binding.edPassword.error = "Password length should be 8 characters"
+            return
+        }
+
+
+        viewModel.loginUser(
+            email,
+            password
+        )
+
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    fun drawableToFile(context: Context, drawableId: Int, fileName: String): File {
+        // Get the drawable resource
+        val drawable: Drawable = context.resources.getDrawable(drawableId, null)
+        val bitmap: Bitmap = (drawable as BitmapDrawable).bitmap // Convert to bitmap
+
+        // Create a file to save the image
+        val file = File(context.cacheDir, fileName)
+        FileOutputStream(file).use { out ->
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out) // Compress and save the image
+        }
+        return file
+    }
+
 }
+

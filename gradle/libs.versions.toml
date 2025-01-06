@@ -1,25 +1,32 @@
 [versions]
-agp = "8.3.2"
+agp = "8.5.2"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-appcompat = "1.6.1"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+appcompat = "1.7.0"
 material = "1.12.0"
-activity = "1.8.0"
+activity = "1.9.2"
 constraintlayout = "2.1.4"
-lifecycleLivedataKtx = "2.8.0"
-lifecycleViewmodelKtx = "2.8.0"
-navigationFragmentKtx = "2.7.7"
-navigationUiKtx = "2.7.7"
+lifecycleLivedataKtx = "2.8.6"
+lifecycleViewmodelKtx = "2.8.6"
+navigationFragmentKtx = "2.8.2"
+navigationUiKtx = "2.8.2"
 legacySupportV4 = "1.0.0"
-fragmentKtx = "1.5.6"
+fragmentKtx = "1.8.4"
 googleAndroidLibrariesMapsplatformSecretsGradlePlugin = "2.0.1"
 playServicesMaps = "19.0.0"
 slidetoconfirm = "1.0.2"
 mpandroidchart = "v3.1.0"
-
+gson = "2.10.1"
+retrofit = "2.9.0"
+retrofit-converter = "2.9.0"
+coroutines = "1.7.3"
+okhttp = "5.0.0-alpha.2"
+glide = "4.15.1"
+room_version =  "2.6.1"
+android_spin_kit ="1.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -39,9 +46,19 @@ androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", ve
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 com-github-chinalwb = { group = "com.github.chinalwb", name = "slidetoconfirm", version.ref = "slidetoconfirm" }
 com-github-philjay = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "mpandroidchart" }
+com-google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+com-squareup-retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+com-squareup-retrofit2-retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit-converter" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+com-squareup-okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+com-github-bumptec-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+androidx-room = {group= "androidx.room", name = "room-runtime",version.ref="room_version"}
+room-compiler = {group= "androidx.room", name = "room-compiler", version.ref = "room_version"}
+android-spinkit = {group = "com.github.ybq", name= "Android-SpinKit",version.ref = "android_spin_kit"}
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 googleAndroidLibrariesMapsplatformSecretsGradlePlugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "googleAndroidLibrariesMapsplatformSecretsGradlePlugin" }
-
+roomlibrary = { id = 'androidx.room', version.ref = "room_version"}

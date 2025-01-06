@@ -236,14 +236,14 @@
 
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/driverName"
+                            android:id="@+id/quantityText"
                             style="@style/TextAppearance.AppCompat.Medium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="8dp"
                             android:fontFamily="@font/nunito_bold"
                             android:layout_toEndOf="@id/driver_image"
-                            android:text="2"
+                            android:text="1"
                             android:textColor="@color/text_color" />
 
 

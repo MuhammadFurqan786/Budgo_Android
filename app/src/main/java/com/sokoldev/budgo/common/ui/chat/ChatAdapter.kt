@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 import com.sokoldev.budgo.R
-import com.sokoldev.budgo.common.models.ChatMessage
+import com.sokoldev.budgo.common.data.models.ChatMessage
 
-class ChatAdapter(private val chatMessages: List<ChatMessage>) :
+class ChatAdapter(private val chatMessages: List<com.sokoldev.budgo.common.data.models.ChatMessage>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -52,7 +52,7 @@ class ChatAdapter(private val chatMessages: List<ChatMessage>) :
 
     class SenderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textMessage: TextView = itemView.findViewById(R.id.message)
-        fun bind(chatMessage: ChatMessage) {
+        fun bind(chatMessage: com.sokoldev.budgo.common.data.models.ChatMessage) {
             textMessage.text = chatMessage.message
         }
     }
@@ -60,7 +60,7 @@ class ChatAdapter(private val chatMessages: List<ChatMessage>) :
     class ReceiverViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textMessage: TextView = itemView.findViewById(R.id.message)
         private val profileImage: ShapeableImageView = itemView.findViewById(R.id.profile_image)
-        fun bind(chatMessage: ChatMessage) {
+        fun bind(chatMessage: com.sokoldev.budgo.common.data.models.ChatMessage) {
             textMessage.text = chatMessage.message
             profileImage.setImageResource(chatMessage.profileImage)
         }

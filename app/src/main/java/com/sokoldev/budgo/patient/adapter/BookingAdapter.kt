@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sokoldev.budgo.R
-import com.sokoldev.budgo.caregiver.ui.task.OrderDetailsActivity
-import com.sokoldev.budgo.patient.models.Booking
+import com.sokoldev.budgo.common.data.models.response.Booking
 import com.sokoldev.budgo.patient.ui.order.BookingDetailsActivity
 
 class BookingAdapter(private val bookingList: List<Booking>) :
@@ -38,15 +38,18 @@ class BookingAdapter(private val bookingList: List<Booking>) :
     override fun onBindViewHolder(holder: BookingViewHolder, position: Int) {
 
         val currentItem = bookingList[position]
-        currentItem.productImage?.let { holder.productImage.setImageResource(it) }
-        currentItem.productName?.let { holder.productName.text = it }
-        currentItem.categoryName?.let { holder.categoryName.text = it }
-        currentItem.productPrice?.let { holder.productPrice.text = "$$it.00" }
-        currentItem.productType?.let { holder.productType.text = it }
-        currentItem.productQuantity?.let { holder.productQuantity.text = it.toString() }
+        currentItem.products[0].productImage.let {
+            Glide.with(context).load(it).into(holder.productImage)
+        }
+        currentItem.products[0].productName.let { holder.productName.text = it }
+        currentItem.products[0].category.let { holder.categoryName.text = it }
+        currentItem.amount.let { holder.productPrice.text = "$$it.00" }
+        currentItem.products[0].productType.let { holder.productType.text = it }
+        currentItem.products.size.let { holder.productQuantity.text = it.toString() }
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, BookingDetailsActivity::class.java)
+            intent.putExtra("booking", currentItem)
             context.startActivity(intent)
         }
     }

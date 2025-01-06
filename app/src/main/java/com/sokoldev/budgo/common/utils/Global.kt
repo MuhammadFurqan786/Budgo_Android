@@ -1,4 +1,4 @@
-package com.sokoldev.learnicity.utils
+package com.sokoldev.budgo.common.utils
 
 import android.app.Activity
 import android.content.Context

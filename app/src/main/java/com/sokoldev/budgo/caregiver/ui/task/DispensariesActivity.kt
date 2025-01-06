@@ -19,7 +19,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.sokoldev.budgo.R
 import com.sokoldev.budgo.databinding.ActivityDispensariesBinding
-import com.sokoldev.budgo.patient.utils.dialog.BottomSheetDialog
+import com.sokoldev.budgo.patient.dialog.BottomSheetDialog
 
 class DispensariesActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap

@@ -8,12 +8,17 @@
     android:background="@color/white"
     tools:context=".caregiver.ui.user.CaregiverRegistrationActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+            <RelativeLayout
             android:id="@+id/relative"
             android:layout_width="match_parent"
             android:layout_height="130dp"
@@ -50,10 +55,10 @@
 
         <!-- White background -->
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-12dp"
-            android:layout_marginBottom="16dp"
             android:background="@drawable/bg_white_rounded"
             android:orientation="vertical"
             android:padding="16dp"
@@ -115,19 +120,19 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/ed_name"
+                    style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="20dp"
-                    android:textColorHint="@color/text_light"
-                    style="@style/TextAppearance.AppCompat.Small"
                     android:background="@color/white"
                     android:fontFamily="@font/nunito_regular"
                     android:hint="@string/full_name"
                     android:inputType="textPersonName"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/text_light" />
             </RelativeLayout>
 
 
@@ -150,19 +155,19 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/ed_email"
+                    style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="20dp"
-                    android:textColorHint="@color/text_light"
-                    style="@style/TextAppearance.AppCompat.Small"
                     android:background="@color/white"
                     android:fontFamily="@font/nunito_regular"
                     android:hint="@string/email_hint"
                     android:inputType="textEmailAddress"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/text_light" />
             </RelativeLayout>
 
 
@@ -185,19 +190,19 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/ed_phone"
+                    style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="20dp"
                     android:background="@color/white"
-                    android:textColorHint="@color/text_light"
-                    style="@style/TextAppearance.AppCompat.Small"
                     android:fontFamily="@font/nunito_regular"
                     android:hint="@string/phone_hint"
                     android:inputType="textEmailAddress"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/text_light" />
             </RelativeLayout>
 
 
@@ -220,19 +225,19 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/ed_dob"
+                    style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="20dp"
                     android:background="@color/white"
                     android:fontFamily="@font/nunito_regular"
-                    android:textColorHint="@color/text_light"
-                    style="@style/TextAppearance.AppCompat.Small"
                     android:hint="@string/dob_hint"
-                    android:inputType="textEmailAddress"
+                    android:inputType="none"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/text_light" />
             </RelativeLayout>
             <!-- Password Input -->
             <RelativeLayout
@@ -250,22 +255,22 @@
                     android:fontFamily="@font/nunito_regular"
                     android:text="@string/password"
                     android:textColor="@color/black" />
-                
+
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/ed_password"
+                    style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="20dp"
-                    android:textColorHint="@color/text_light"
-                    style="@style/TextAppearance.AppCompat.Small"
                     android:background="@color/white"
                     android:fontFamily="@font/nunito_regular"
                     android:hint="************"
                     android:inputType="textEmailAddress"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/text_light" />
             </RelativeLayout>
             <!-- Caregiver License  Section -->
             <RelativeLayout
@@ -279,7 +284,7 @@
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/nunito_regular"
                     android:text="@string/driving_license"
@@ -303,6 +308,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_white_outlined"
                         android:drawableStart="@android:drawable/ic_menu_camera"
+                        android:lines="1"
                         android:paddingStart="8dp"
                         android:text="@string/front_side"
                         app:drawableTint="@color/black" />
@@ -316,6 +322,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_white_outlined"
                         android:drawableStart="@android:drawable/ic_menu_camera"
+                        android:lines="1"
                         android:paddingStart="8dp"
                         android:text="@string/back_side"
                         app:drawableTint="@color/black" />
@@ -332,10 +339,10 @@
 
                 <TextView
                     android:id="@+id/caregiver_card_text"
-                    style="@style/TextAppearance.AppCompat.Body1"
+                    style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/nunito_regular"
                     android:text="@string/caregiver_card"
@@ -359,6 +366,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_white_outlined"
                         android:drawableStart="@android:drawable/ic_menu_camera"
+                        android:lines="1"
                         android:paddingStart="8dp"
                         android:text="@string/front_side"
                         app:drawableTint="@color/black" />
@@ -372,6 +380,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_white_outlined"
                         android:drawableStart="@android:drawable/ic_menu_camera"
+                        android:lines="1"
                         android:paddingStart="8dp"
                         android:text="@string/back_side"
                         app:drawableTint="@color/black" />
@@ -396,10 +405,10 @@
             <!-- Terms of Service and Privacy Policy -->
             <TextView
                 android:id="@+id/terms_and_privacy"
+                style="@style/TextAppearance.AppCompat.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                style="@style/TextAppearance.AppCompat.Small"
                 android:fontFamily="@font/nunito_regular"
                 android:gravity="center"
                 android:text="@string/terms_and_privacy"
@@ -409,16 +418,33 @@
             <!-- Login  -->
             <TextView
                 android:id="@+id/login"
+                style="@style/TextAppearance.AppCompat.Small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/nunito_regular"
-                style="@style/TextAppearance.AppCompat.Small"
                 android:gravity="center"
                 android:text="@string/already_account"
                 android:textColor="@color/button_text"
                 android:textSize="14sp" />
 
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Small.Circle"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/primary" />
+
+    </RelativeLayout>
+
 </ScrollView>

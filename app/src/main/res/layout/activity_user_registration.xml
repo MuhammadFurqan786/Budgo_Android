@@ -8,7 +8,11 @@
     android:id="@+id/main"
     tools:context=".patient.ui.user.UserRegistrationActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -312,6 +316,7 @@
                         android:drawableStart="@android:drawable/ic_menu_camera"
                         android:paddingStart="8dp"
                         android:text="@string/front_side"
+                        android:lines="1"
                         app:drawableTint="@color/black" />
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -323,6 +328,7 @@
                         android:background="@drawable/bg_white_outlined"
                         android:drawableStart="@android:drawable/ic_menu_camera"
                         android:paddingStart="8dp"
+                        android:lines="1"
                         android:text="@string/back_side"
                         app:drawableTint="@color/black" />
                 </LinearLayout>
@@ -371,4 +377,16 @@
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Small.Circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:SpinKit_Color="@color/primary" />
+    </RelativeLayout>
 </ScrollView>

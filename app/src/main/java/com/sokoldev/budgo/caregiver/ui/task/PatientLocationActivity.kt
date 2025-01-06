@@ -87,7 +87,7 @@ class PatientLocationActivity : AppCompatActivity(), OnMapReadyCallback {
         val mode = "mode=driving"
         val parameters = "$strOrigin&$strDest&$mode"
         val output = "json"
-        return "https://maps.googleapis.com/maps/api/directions/$output?$parameters&key="Your_API_KEY"
+        return "https://maps.googleapis.com/maps/api/directions/$output?$parameters&key=Your_API_KEY"
     }
 
     private inner class GetDirection(val url: String) : AsyncTask<Void, Void, String>() {
