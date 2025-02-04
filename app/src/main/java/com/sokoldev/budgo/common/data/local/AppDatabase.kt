@@ -1,9 +1,9 @@
 package com.sokoldev.budgo.common.data.local
 
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import android.content.Context
 
 @Database(entities = [CartItem::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
@@ -19,7 +19,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "cart_database"
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .setJournalMode(RoomDatabase.JournalMode.WRITE_AHEAD_LOGGING)
+                    .build()
                 INSTANCE = instance
                 instance
             }

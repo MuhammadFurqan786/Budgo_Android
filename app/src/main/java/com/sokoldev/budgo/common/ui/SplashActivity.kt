@@ -11,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.sokoldev.budgo.caregiver.ui.DashboardActivity
 import com.sokoldev.budgo.common.ui.user.LoginActivity
 import com.sokoldev.budgo.common.utils.GPSTracker
 import com.sokoldev.budgo.common.utils.Global
@@ -18,6 +19,7 @@ import com.sokoldev.budgo.common.utils.prefs.PreferenceHelper
 import com.sokoldev.budgo.common.utils.prefs.PreferenceKeys
 import com.sokoldev.budgo.databinding.ActivitySplashBinding
 import com.sokoldev.budgo.patient.dialog.CustomAgeDialogFragment
+import com.sokoldev.budgo.patient.ui.home.HomeActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -43,22 +45,33 @@ class SplashActivity : AppCompatActivity() {
 
 
         binding.apply {
-            getStarted.setOnClickListener {
-                checkForPermission()
-                getStarted.visibility = View.GONE
-                selectRole.visibility = View.VISIBLE
-            }
-            patient.setOnClickListener {
-                helper.setPatientUser(true)
-                val dialogFragment = CustomAgeDialogFragment()
-                dialogFragment.show(supportFragmentManager, "CustomDialog")
-            }
-            caregiver.setOnClickListener {
-                val intent = Intent(this@SplashActivity, LoginActivity::class.java)
-                helper.setPatientUser(false)
-                startActivity(intent)
-            }
 
+            if (helper.isUserLogin()) {
+                if (helper.isPatientUser()) {
+                    startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
+                    finish()
+                } else {
+                    startActivity(Intent(this@SplashActivity, DashboardActivity::class.java))
+                    finish()
+                }
+            } else {
+                getStarted.setOnClickListener {
+                    checkForPermission()
+                    getStarted.visibility = View.GONE
+                    selectRole.visibility = View.VISIBLE
+                }
+                patient.setOnClickListener {
+                    helper.setPatientUser(true)
+                    val dialogFragment = CustomAgeDialogFragment()
+                    dialogFragment.show(supportFragmentManager, "CustomDialog")
+                }
+                caregiver.setOnClickListener {
+                    val intent = Intent(this@SplashActivity, LoginActivity::class.java)
+                    helper.setPatientUser(false)
+                    startActivity(intent)
+                }
+
+            }
         }
 
     }

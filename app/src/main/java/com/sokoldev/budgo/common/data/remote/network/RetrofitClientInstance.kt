@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitClientInstance {
 
-    private const val BASE_URL_DEV = "https://codewithfurqan.tech/budgo/public/api/v1/"
+    private const val BASE_URL_DEV = "https://budgo.net/budgo/public/api/v1/"
 
     private val gson: Gson = GsonBuilder()
         .setLenient()

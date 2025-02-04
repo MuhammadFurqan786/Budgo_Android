@@ -67,7 +67,7 @@ interface ApiServices {
     ): Response<LoginResponse>
 
 
-    @GET("auth/forget-password/{email}")
+    @GET("auth/forgot-password/{email}")
     suspend fun forgotUserPasswordApi(
         @Path("email") email: String,
     ): Response<ForgetPasswordResponse>
@@ -149,6 +149,15 @@ interface ApiServices {
         @Header("Authorization") token: String,
         @Path("category_id") categoryId: String
     ): Response<CategoryProductResponse>
+
+
+    @GET("app/brand-products/{brand_id}")
+    suspend fun productByBrandId(
+        @Header("Authorization") token: String,
+        @Path("brand_id") brandId: String
+    ): Response<CategoryProductResponse>
+
+
 
 
 

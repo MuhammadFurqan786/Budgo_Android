@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.sokoldev.budgo.common.ui.SplashActivity
+import com.sokoldev.budgo.common.utils.prefs.PreferenceHelper
 import com.sokoldev.budgo.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
+    private lateinit var helper: PreferenceHelper
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -30,7 +32,11 @@ class ProfileFragment : Fragment() {
         val root: View = binding.root
 
 
+        helper =  PreferenceHelper.getPref(requireContext())
+
         binding.logoutButton.setOnClickListener {
+            helper.clearPreferences()
+            helper.setUserLogin(false)
             startActivity(
                 Intent(
                     context,

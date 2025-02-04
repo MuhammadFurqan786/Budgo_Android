@@ -92,7 +92,8 @@ class UserRegistrationActivity : AppCompatActivity() {
         viewModel.apiResponse.observe(this, Observer {
             when (it) {
                 is ApiResponse.Success -> {
-                    binding.spinKit.visibility = View.GONE
+                    binding.loadingView.visibility = View.GONE
+                    binding.loadingView.hide()
                     if (it.data.status) {
                         Global.showMessage(
                             binding.root.rootView,
@@ -115,11 +116,13 @@ class UserRegistrationActivity : AppCompatActivity() {
                         it.errorMessage,
                         Snackbar.LENGTH_SHORT
                     )
-                    binding.spinKit.visibility = View.GONE
+                    binding.loadingView.visibility = View.GONE
+                    binding.loadingView.hide()
                 }
 
                 ApiResponse.Loading -> {
-                    binding.spinKit.visibility = View.VISIBLE
+                    binding.loadingView.visibility = View.VISIBLE
+                    binding.loadingView.show()
                 }
             }
 

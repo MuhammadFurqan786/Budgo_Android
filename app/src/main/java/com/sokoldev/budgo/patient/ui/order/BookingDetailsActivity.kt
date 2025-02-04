@@ -3,6 +3,7 @@ package com.sokoldev.budgo.patient.ui.order
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.sokoldev.budgo.common.data.models.response.Booking
 import com.sokoldev.budgo.common.ui.chat.ChatActivity
+import com.sokoldev.budgo.common.utils.prefs.PreferenceKeys.Companion.BOOKING
 import com.sokoldev.budgo.databinding.ActivityBookingDetailsBinding
 
 class BookingDetailsActivity : AppCompatActivity() {
@@ -26,7 +28,8 @@ class BookingDetailsActivity : AppCompatActivity() {
             insets
         }
 
-        val booking: Booking? = intent.getParcelableExtra("booking")
+        val booking: Booking? = intent.getParcelableExtra<Booking>(BOOKING)
+        Log.d("BOOKING", booking.toString())
         if (booking != null) {
             binding.apply {
                 booking.products[0].productImage.let {

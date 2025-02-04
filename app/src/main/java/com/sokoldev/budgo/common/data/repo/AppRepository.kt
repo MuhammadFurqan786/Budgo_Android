@@ -112,5 +112,24 @@ class AppRepository {
         }
     }
 
+    suspend fun productByBrandIdApi(
+        token: String,
+        brandId: String
+    ): ApiResponse<CategoryProductResponse> {
+        return try {
+            val response = apiServices.productByBrandId(
+                token = token, brandId
+            )
+            if (response.isSuccessful) {
+                ApiResponse.Success(response.body()!!)
+
+            } else {
+                ApiResponse.Error("Error: ${response.code()} - ${response.message()}")
+            }
+        } catch (e: Exception) {
+            ApiResponse.Error("Error: ${e.message}")
+        }
+    }
+
 
 }

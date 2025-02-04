@@ -434,16 +434,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <com.github.ybq.android.spinkit.SpinKitView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/spin_kit"
-            style="@style/SpinKitView.Small.Circle"
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/loadingView"
             android:layout_width="wrap_content"
-            android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            app:SpinKit_Color="@color/primary" />
+            android:indeterminate="true"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

@@ -2,6 +2,7 @@ package com.sokoldev.budgo.patient.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 import com.sokoldev.budgo.R
 import com.sokoldev.budgo.common.data.models.response.Product
+import com.sokoldev.budgo.patient.ui.menu.ProductDetailsActivity
 
 class EdiblesAdapter(private val productList: List<Product>) :
     RecyclerView.Adapter<EdiblesAdapter.ProductViewHolder>() {
@@ -39,10 +41,9 @@ class EdiblesAdapter(private val productList: List<Product>) :
         currentItem.dispensory.dispensoryName.let { holder.edibleDesc.text = it }
 
         holder.itemView.setOnClickListener {
-//            val intent = Intent(context, DetailActivity::class.java)
-//            intent.putExtra(GlobalKeys.IS_OFFER, GlobalKeys.NO)
-//            intent.putExtra(GlobalKeys.EVENT, currentItem)
-//            context.startActivity(intent)
+            val intent = Intent(context, ProductDetailsActivity::class.java)
+            intent.putExtra("product",currentItem)
+            context.startActivity(intent)
         }
     }
 

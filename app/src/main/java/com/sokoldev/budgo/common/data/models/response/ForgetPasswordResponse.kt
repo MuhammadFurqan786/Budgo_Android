@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ForgetPasswordResponse(
     @SerializedName("data")
-    val `data`: com.sokoldev.budgo.common.data.models.response.ForgetData,
+    val `data`: ForgetData,
     @SerializedName("message")
     val message: String,
     @SerializedName("status")
