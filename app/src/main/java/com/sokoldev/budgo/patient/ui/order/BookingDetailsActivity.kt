@@ -28,6 +28,10 @@ class BookingDetailsActivity : AppCompatActivity() {
             insets
         }
 
+        binding.back.setOnClickListener {
+            finish()
+        }
+
         val booking: Booking? = intent.getParcelableExtra<Booking>(BOOKING)
         Log.d("BOOKING", booking.toString())
         if (booking != null) {

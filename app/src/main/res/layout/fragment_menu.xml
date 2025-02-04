@@ -180,7 +180,8 @@
             android:id="@+id/loadingView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
             android:indeterminate="true"
             android:visibility="gone" />
     </RelativeLayout>

@@ -34,7 +34,7 @@
             android:layout_centerVertical="true"
             android:fontFamily="@font/nunito_bold"
             android:gravity="center"
-            android:text="All Products"
+            android:text="Products"
             android:textColor="@color/white" />
 
     </RelativeLayout>
@@ -58,7 +58,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/nunito_bold"
             android:gravity="center"
-            android:text="Bookings"
+            android:text="Products"
             android:textColor="@color/black" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -67,8 +67,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_product" />
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/item_product_view_all" />
 
     </LinearLayout>
 

@@ -16,7 +16,7 @@ import com.sokoldev.budgo.common.utils.Global
 import com.sokoldev.budgo.common.utils.prefs.PreferenceHelper
 import com.sokoldev.budgo.common.utils.prefs.PreferenceKeys
 import com.sokoldev.budgo.databinding.ActivityViewAllBinding
-import com.sokoldev.budgo.patient.adapter.ProductAdapter
+import com.sokoldev.budgo.patient.adapter.ViewAllProductAdapter
 
 class ViewAllActivity : AppCompatActivity() {
     private lateinit var binding: ActivityViewAllBinding
@@ -68,7 +68,7 @@ class ViewAllActivity : AppCompatActivity() {
                 is ApiResponse.Success -> {
                     if (it.data.data != null) {
                         val listCategory = it.data.data
-                        val adapterCategory = ProductAdapter(listCategory)
+                        val adapterCategory = ViewAllProductAdapter(listCategory)
                         binding.rvProducts.adapter = adapterCategory
                         binding.rvProducts.layoutManager = GridLayoutManager(this, 2)
                         binding.rvProducts.setHasFixedSize(true)
