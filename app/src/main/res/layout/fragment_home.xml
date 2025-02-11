@@ -8,7 +8,12 @@
     android:background="@color/white"
     tools:context=".patient.ui.home.HomeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -49,12 +54,15 @@
 
         </RelativeLayout>
 
-        <!-- White background -->
+
+            <!-- White background -->
         <LinearLayout
+            android:id="@+id/dataLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-12dp"
             android:layout_marginBottom="16dp"
+            android:visibility="gone"
             android:background="@drawable/bg_white_rounded"
             android:orientation="vertical"
             android:padding="16dp"
@@ -98,8 +106,20 @@
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_category" />
+                tools:listitem="@layout/item_brand" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/loadingView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
 </ScrollView>

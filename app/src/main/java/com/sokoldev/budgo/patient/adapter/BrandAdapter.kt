@@ -1,6 +1,7 @@
 package com.sokoldev.budgo.patient.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import com.sokoldev.budgo.R
 import com.sokoldev.budgo.common.data.models.response.Brand
 import com.sokoldev.budgo.common.data.models.response.Product
 import com.sokoldev.budgo.common.data.models.response.TopSeller
+import com.sokoldev.budgo.common.utils.Constants
+import com.sokoldev.budgo.patient.ui.viewall.ViewAllActivity
 
 class BrandAdapter(private val brandList: List<Brand>) :
     RecyclerView.Adapter<BrandAdapter.BrandViewHolder>() {
@@ -32,10 +35,11 @@ class BrandAdapter(private val brandList: List<Brand>) :
         currentItem.brandImage.let { Glide.with(context).load(it).into(holder.brandImage) }
 
         holder.itemView.setOnClickListener {
-//            val intent = Intent(context, DetailActivity::class.java)
-//            intent.putExtra(GlobalKeys.IS_OFFER, GlobalKeys.NO)
-//            intent.putExtra(GlobalKeys.EVENT, currentItem)
-//            context.startActivity(intent)
+            val intent = Intent(context, ViewAllActivity::class.java)
+            intent.putExtra(Constants.TYPE, Constants.BRAND)
+            intent.putExtra(Constants.BRAND_ID, currentItem.id)
+            intent.putExtra(Constants.BRAND_NAME, currentItem.brandName)
+            context.startActivity(intent)
         }
     }
 

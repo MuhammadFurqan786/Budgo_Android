@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sokoldev.budgo.R
 import com.sokoldev.budgo.common.data.models.response.Booking
+import com.sokoldev.budgo.common.utils.Global
+import com.sokoldev.budgo.common.utils.prefs.PreferenceKeys.Companion.BOOKING
 import com.sokoldev.budgo.patient.ui.order.BookingDetailsActivity
 
 class BookingAdapter(private val bookingList: List<Booking>) :
@@ -49,7 +51,7 @@ class BookingAdapter(private val bookingList: List<Booking>) :
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, BookingDetailsActivity::class.java)
-            intent.putExtra("booking", currentItem)
+            intent.putExtra(BOOKING, currentItem)
             context.startActivity(intent)
         }
     }

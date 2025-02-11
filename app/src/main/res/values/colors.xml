@@ -14,5 +14,6 @@
     <color name="light_extra">#CACACA</color>
     <color name="color_green">#07663E</color>
     <color name="color_yellow">#FBC02D</color>
+    <color name="color_red">#D50000</color>
 
 </resources>

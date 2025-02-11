@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
         homeViewModel.apiResponse.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is ApiResponse.Success -> {
-//                    binding.spinKit.visibility = View.GONE
+
                     if (it.data.data != null) {
 
                        val listCategory = it.data.data.categories
@@ -64,8 +64,13 @@ class HomeFragment : Fragment() {
                        val listBrands = it.data.data.brands
                         val adapterBrand = BrandAdapter(listBrands)
                         binding.recyclerviewBrands.adapter = adapterBrand
+                        binding.loadingView.visibility = View.GONE
+                        binding.dataLayout.visibility = View.VISIBLE
 
                         } else {
+                        binding.loadingView.visibility = View.GONE
+                        binding.dataLayout.visibility = View.GONE
+
                             Global.showErrorMessage(
                                 binding.root.rootView,
                                 it.data.message,
@@ -80,11 +85,13 @@ class HomeFragment : Fragment() {
                             it.errorMessage,
                             Snackbar.LENGTH_SHORT
                         )
-    //                    binding.spinKit.visibility = View.GONE
+                        binding.loadingView.visibility = View.GONE
+                        binding.dataLayout.visibility = View.GONE
                     }
 
                     ApiResponse.Loading -> {
-    //                    binding.spinKit.visibility = View.VISIBLE
+                        binding.loadingView.visibility = View.VISIBLE
+                        binding.dataLayout.visibility = View.GONE
                     }
             }
 

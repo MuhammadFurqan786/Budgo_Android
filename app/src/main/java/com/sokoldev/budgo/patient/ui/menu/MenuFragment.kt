@@ -72,13 +72,16 @@ class MenuFragment : Fragment() {
                         val popularEdibles = it.data.data.popularEdibles
                         val popularEdiblesAdapter = EdiblesAdapter(popularEdibles)
                         binding.recyclervieweEdibles.adapter = popularEdiblesAdapter
-
+                        binding.loadingView.visibility = View.GONE
+                        binding.dataLayout.visibility = View.VISIBLE
                     } else {
                         Global.showErrorMessage(
                             binding.root.rootView,
                             it.data.message,
                             Snackbar.LENGTH_SHORT
                         )
+                        binding.loadingView.visibility = View.GONE
+                        binding.dataLayout.visibility = View.GONE
                     }
                 }
 
@@ -88,11 +91,13 @@ class MenuFragment : Fragment() {
                         it.errorMessage,
                         Snackbar.LENGTH_SHORT
                     )
-//                    binding.spinKit.visibility = View.GONE
+                    binding.loadingView.visibility = View.GONE
+                    binding.dataLayout.visibility = View.GONE
                 }
 
                 is ApiResponse.Loading -> {
-//                    binding.spinKit.visibility = View.GONE
+                    binding.loadingView.visibility = View.VISIBLE
+                    binding.dataLayout.visibility = View.GONE
                 }
 
             }

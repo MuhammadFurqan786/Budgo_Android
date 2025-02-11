@@ -14,5 +14,6 @@ class PreferenceKeys {
 
         const val KEY_LATITUDE = "latitude"
         const val KEY_LONGITUDE = "longitude"
+        const val BOOKING = "booking"
     }
 }

@@ -3,9 +3,9 @@ package com.sokoldev.budgo.common.data.models.response
 
 import com.google.gson.annotations.SerializedName
 
-data class CategoryProductResponse(
+data class ViewAllResponse(
     @SerializedName("data")
-    val `data`: List<Product>,
+    val `data`: ViewAllData,
     @SerializedName("message")
     val message: String,
     @SerializedName("status")

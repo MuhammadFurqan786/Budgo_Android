@@ -1,11 +1,6 @@
 package com.sokoldev.budgo.common.ui.user
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -27,8 +22,6 @@ import com.sokoldev.budgo.common.viewmodels.UserViewModel
 import com.sokoldev.budgo.databinding.ActivityLoginBinding
 import com.sokoldev.budgo.patient.ui.home.HomeActivity
 import com.sokoldev.budgo.patient.ui.user.UserRegistrationActivity
-import java.io.File
-import java.io.FileOutputStream
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -64,6 +57,12 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        binding.forgotPassword.setOnClickListener {
+            val intent = Intent(this@LoginActivity, PasswordActivity::class.java)
+            startActivity(intent)
+
+        }
+
         initObserver()
 
     }
@@ -73,9 +72,9 @@ class LoginActivity : AppCompatActivity() {
         viewModel.apiResponseLogin.observe(this, Observer {
             when (it) {
                 is ApiResponse.Success -> {
-                    binding.spinKit.visibility = View.GONE
+                    binding.loadingView.visibility = View.GONE
+                    binding.loadingView.hide()
                     if (it.data.data != null) {
-
                         val user = it.data.data.user
                         helper.saveCurrentUser(user)
                         helper.saveStringValue(PreferenceKeys.PREF_USER_TOKEN, it.data.data.token)
@@ -113,11 +112,15 @@ class LoginActivity : AppCompatActivity() {
                         it.errorMessage,
                         Snackbar.LENGTH_SHORT
                     )
-                    binding.spinKit.visibility = View.GONE
+                    binding.loadingView.visibility = View.GONE
+                    binding.loadingView.hide()
                 }
 
                 ApiResponse.Loading -> {
-                    binding.spinKit.visibility = View.VISIBLE
+                    Log.d("LoginActivity", "Loading state triggered")
+                    binding.loadingView.visibility = View.VISIBLE
+                    binding.loadingView.show()
+
                 }
             }
 
@@ -144,19 +147,6 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
-    fun drawableToFile(context: Context, drawableId: Int, fileName: String): File {
-        // Get the drawable resource
-        val drawable: Drawable = context.resources.getDrawable(drawableId, null)
-        val bitmap: Bitmap = (drawable as BitmapDrawable).bitmap // Convert to bitmap
-
-        // Create a file to save the image
-        val file = File(context.cacheDir, fileName)
-        FileOutputStream(file).use { out ->
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out) // Compress and save the image
-        }
-        return file
-    }
 
 }
 

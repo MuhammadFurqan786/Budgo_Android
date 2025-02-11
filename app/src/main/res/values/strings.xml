@@ -114,6 +114,17 @@ printing and  Lorem Ipsum is simply dummy text of.\n
     <string name="GPSAlertDialogMessage">Allow Gps for Location</string>
     <string name="GPSAlertDialogTitle">Required Gps</string>
     <string name="cancel">Cancel</string>
+    <string name="empty_cart">Your Cart is Empty.</string>
+    <string name="no_data_found">No Data Found!</string>
+    <string name="forgot_password_">Forgot Password?</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="send">Send</string>
+    <string name="verification">Verification</string>
+    <string name="otp_text">Please enter the OTP sent to %1$s</string>
+    <string name="verify">Verify</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="reset_password">Reset Password</string>
 
 
 </resources>

@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.googleAndroidLibrariesMapsplatformSecretsGradlePlugin)
+    alias(libs.plugins.ksp)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -62,14 +64,14 @@ dependencies {
     implementation(libs.com.squareup.okhttp3)
     implementation(libs.com.logging.interceptor)
     implementation(libs.com.github.bumptec.glide)
-
+    implementation(libs.pinview)
     //room
-    implementation(libs.androidx.room)
-    annotationProcessor(libs.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
 
-    //spin kit loader
-    implementation(libs.android.spinkit)
 
+    implementation(libs.stripe)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

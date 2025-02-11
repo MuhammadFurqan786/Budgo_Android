@@ -25,9 +25,8 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             _apiResponse.value = ApiResponse.Loading
             val response = appRepository.homeScreenApi(
-                "Bearer "+token
+                "Bearer $token"
             )
-
             _apiResponse.value = response
 
         }
