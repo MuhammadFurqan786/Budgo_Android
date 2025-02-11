@@ -98,7 +98,7 @@ class UserViewModel : ViewModel() {
                 ptBackSide
             )
 
-            _apiResponse.value = response
+            _apiResponseLogin.value = response
         }
 
     }

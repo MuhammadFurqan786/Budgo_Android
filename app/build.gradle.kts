@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.com.squareup.retrofit2.retrofit.converter)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.com.squareup.okhttp3)
+    implementation(libs.com.logging.interceptor)
     implementation(libs.com.github.bumptec.glide)
 
     //room

@@ -28,57 +28,55 @@ class UserRepository() {
         cgBackSide: File
     ): ApiResponse<DefaultResponse> {
         return try {
-            val requestDlFrontSideFile =
-                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), dlFrontSide)
-            val dlFrontSideFile =
-                MultipartBody.Part.createFormData("driving_license_front_side", dlFrontSide.name, requestDlFrontSideFile)
+            // Validate files
+            if (!dlFrontSide.exists() || !dlBackSide.exists() || !cgFrontSide.exists() || !cgBackSide.exists()) {
+                return ApiResponse.Error("Error: One or more files do not exist")
+            }
 
-            val requestDlBackSideFile =
-                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), dlBackSide)
-            val dlBackSideFile =
-                MultipartBody.Part.createFormData("driving_license_back_side", dlBackSide.name, requestDlBackSideFile)
+            // Create MultipartBody using MultipartBody.Builder
+            val requestBody: RequestBody = MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("name", fullName)
+                .addFormDataPart("email", email1)
+                .addFormDataPart("phone", phone1)
+                .addFormDataPart("dob", dob1)
+                .addFormDataPart("latitude", latitude1)
+                .addFormDataPart("longitude", longitude1)
+                .addFormDataPart("password", password1)
+                .addFormDataPart("type", type1)
+                .addFormDataPart(
+                    "driving_license_front_side", // Field name for the front side of the driving license
+                    dlFrontSide.name, // File name
+                    RequestBody.create("image/*".toMediaTypeOrNull(), dlFrontSide) // File content
+                )
+                .addFormDataPart(
+                    "driving_license_back_side", // Field name for the back side of the driving license
+                    dlBackSide.name, // File name
+                    RequestBody.create("image/*".toMediaTypeOrNull(), dlBackSide) // File content
+                )
+                .addFormDataPart(
+                    "caregiver_card_front_side", // Field name for the front side of the caregiver card
+                    cgFrontSide.name, // File name
+                    RequestBody.create("image/*".toMediaTypeOrNull(), cgFrontSide) // File content
+                )
+                .addFormDataPart(
+                    "caregiver_card_back_side", // Field name for the back side of the caregiver card
+                    cgBackSide.name, // File name
+                    RequestBody.create("image/*".toMediaTypeOrNull(), cgBackSide) // File content
+                )
+                .build()
 
-            val requestCGFrontSideFile =
-                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), cgFrontSide)
-            val cgFrontSideFile =
-                MultipartBody.Part.createFormData("caregiver_card_front_side", cgFrontSide.name, requestCGFrontSideFile)
+            // Make the API call
+            val response = apiService.signupCaregiver(requestBody)
 
-            val requestCGBackSideFile =
-                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), cgBackSide)
-            val cgBackSideFile =
-                MultipartBody.Part.createFormData("caregiver_card_back_side", cgBackSide.name, requestCGBackSideFile)
-
-
-            val name = RequestBody.create("text/plain".toMediaTypeOrNull(), fullName)
-            val email = RequestBody.create("text/plain".toMediaTypeOrNull(), email1)
-            val phone = RequestBody.create("text/plain".toMediaTypeOrNull(), phone1)
-            val dob = RequestBody.create("text/plain".toMediaTypeOrNull(), dob1)
-            val latitude = RequestBody.create("text/plain".toMediaTypeOrNull(), latitude1)
-            val longitude = RequestBody.create("text/plain".toMediaTypeOrNull(), longitude1)
-            val password = RequestBody.create("text/plain".toMediaTypeOrNull(), password1)
-            val type = RequestBody.create("text/plain".toMediaTypeOrNull(), type1)
-
-            val response = apiService.signupCareGiver(
-                name,
-                email,
-                phone,
-                dob,
-                latitude,
-                longitude,
-                password,
-                type,
-                dlFrontSideFile,
-                dlBackSideFile,
-                cgFrontSideFile,
-                cgBackSideFile
-            )
-            if (response.isSuccessful) {
+            // Handle the response
+            if (response.isSuccessful && response.body() != null) {
                 ApiResponse.Success(response.body()!!)
-
             } else {
                 ApiResponse.Error("Error: ${response.code()} - ${response.message()}")
             }
         } catch (e: Exception) {
+            e.printStackTrace()
             ApiResponse.Error("Error: ${e.message}")
         }
     }
@@ -95,52 +93,51 @@ class UserRepository() {
         type1: String,
         cgFrontSide: File,
         cgBackSide: File
-    ): ApiResponse<DefaultResponse> {
+    ): ApiResponse<LoginResponse> {
         return try {
+            // Validate files
+            if (!cgFrontSide.exists() || !cgBackSide.exists()) {
+                return ApiResponse.Error("Error: File does not exist")
+            }
 
+            // Create MultipartBody using MultipartBody.Builder
+            val requestBody: RequestBody = MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("name", fullName)
+                .addFormDataPart("email", email1)
+                .addFormDataPart("phone", phone1)
+                .addFormDataPart("dob", dob1)
+                .addFormDataPart("latitude", latitude1)
+                .addFormDataPart("longitude", longitude1)
+                .addFormDataPart("password", password1)
+                .addFormDataPart("type", type1)
+                .addFormDataPart(
+                    "patient_card_front_side", // Field name for the front side file
+                    cgFrontSide.name, // File name
+                    RequestBody.create("image/*".toMediaTypeOrNull(), cgFrontSide) // File content
+                )
+                .addFormDataPart(
+                    "patient_card_back_side", // Field name for the back side file
+                    cgBackSide.name, // File name
+                    RequestBody.create("image/*".toMediaTypeOrNull(), cgBackSide) // File content
+                )
+                .build()
 
-            val requestPTFrontSideFile =
-                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), cgFrontSide)
-            val ptFrontSideFile =
-                MultipartBody.Part.createFormData("patient_card_front_side", cgFrontSide.name, requestPTFrontSideFile)
+            // Make the API call
+            val response = apiService.signup(requestBody)
 
-            val requestPTBackSideFile =
-                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), cgBackSide)
-            val ptBackSideFile =
-                MultipartBody.Part.createFormData("patient_card_back_side", cgBackSide.name, requestPTBackSideFile)
-
-
-            val name = RequestBody.create("text/plain".toMediaTypeOrNull(), fullName)
-            val email = RequestBody.create("text/plain".toMediaTypeOrNull(), email1)
-            val phone = RequestBody.create("text/plain".toMediaTypeOrNull(), phone1)
-            val dob = RequestBody.create("text/plain".toMediaTypeOrNull(), dob1)
-            val latitude = RequestBody.create("text/plain".toMediaTypeOrNull(), latitude1)
-            val longitude = RequestBody.create("text/plain".toMediaTypeOrNull(), longitude1)
-            val password = RequestBody.create("text/plain".toMediaTypeOrNull(), password1)
-            val type = RequestBody.create("text/plain".toMediaTypeOrNull(), type1)
-
-            val response = apiService.signupPatient(
-                name,
-                email,
-                phone,
-                dob,
-                latitude,
-                longitude,
-                password,
-                type,
-                ptFrontSideFile,
-                ptBackSideFile
-            )
-            if (response.isSuccessful) {
+            // Handle the response
+            if (response.isSuccessful && response.body() != null) {
                 ApiResponse.Success(response.body()!!)
-
             } else {
                 ApiResponse.Error("Error: ${response.code()} - ${response.message()}")
             }
         } catch (e: Exception) {
+            e.printStackTrace()
             ApiResponse.Error("Error: ${e.message}")
         }
     }
+
 
 
     suspend fun loginUser(

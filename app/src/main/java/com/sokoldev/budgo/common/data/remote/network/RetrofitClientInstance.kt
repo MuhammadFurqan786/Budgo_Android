@@ -3,21 +3,30 @@ package com.sokoldev.budgo.common.data.remote.network
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClientInstance {
 
-    private const val BASE_URL_DEV = "https://codewithfurqan.tech/budgo/public/api/v1/"
+    private const val BASE_URL_DEV = "https://budgo.net/budgo/public/api/v1/"
 
     private val gson: Gson = GsonBuilder()
         .setLenient()
         .create()
 
+    private fun createLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY  // Log Headers + Body
+        }
+    }
+
+
     private val okHttpBuilder = OkHttpClient.Builder()
         .readTimeout(10, TimeUnit.SECONDS)
         .connectTimeout(5, TimeUnit.SECONDS)
+        .addInterceptor(createLoggingInterceptor())
         .addInterceptor { chain ->
             val request = chain.request()
             val response = chain.proceed(request)

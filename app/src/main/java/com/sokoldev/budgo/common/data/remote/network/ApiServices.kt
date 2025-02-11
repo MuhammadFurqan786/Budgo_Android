@@ -11,10 +11,12 @@ import com.sokoldev.budgo.common.data.models.response.MyBookingsResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -26,38 +28,18 @@ interface ApiServices {
 
     /* Auth Api*/
 
-    @Multipart
+
     @POST("auth/signup")
-    suspend fun signupCareGiver(
-        @Part("name") name: RequestBody,
-        @Part("email") email: RequestBody,
-        @Part("phone") phone: RequestBody,
-        @Part("dob") dob: RequestBody,
-        @Part("latitude") latitude: RequestBody,
-        @Part("longitude") longitude: RequestBody,
-        @Part("password") password: RequestBody,
-        @Part("type") type: RequestBody,
-        @Part drivingLicenseFrontSide: MultipartBody.Part,
-        @Part drivingLicenseBackSide: MultipartBody.Part,
-        @Part careGiverCardFrontSide: MultipartBody.Part,
-        @Part careGiverCardBackSide: MultipartBody.Part,
+    suspend fun signup(
+        @Body requestBody: RequestBody
+    ): Response<LoginResponse>
+
+    @POST("auth/signup")
+    suspend fun signupCaregiver(
+        @Body requestBody: RequestBody
     ): Response<DefaultResponse>
 
 
-    @Multipart
-    @POST("auth/signup")
-    suspend fun signupPatient(
-        @Part("name") name: RequestBody,
-        @Part("email") email: RequestBody,
-        @Part("phone") phone: RequestBody,
-        @Part("dob") dob: RequestBody,
-        @Part("latitude") latitude: RequestBody,
-        @Part("longitude") longitude: RequestBody,
-        @Part("password") password: RequestBody,
-        @Part("type") type: RequestBody,
-        @Part patientCardFrontSide: MultipartBody.Part,
-        @Part patientCardBackSide: MultipartBody.Part
-    ): Response<DefaultResponse>
 
     @FormUrlEncoded
     @POST("auth/login")
@@ -149,6 +131,9 @@ interface ApiServices {
         @Header("Authorization") token: String,
         @Path("category_id") categoryId: String
     ): Response<CategoryProductResponse>
+
+
+//    Caregiver Side Api
 
 
 

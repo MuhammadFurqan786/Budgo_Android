@@ -51,6 +51,7 @@ com-squareup-retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "re
 com-squareup-retrofit2-retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit-converter" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 com-squareup-okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+com-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 com-github-bumptec-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 androidx-room = {group= "androidx.room", name = "room-runtime",version.ref="room_version"}
 room-compiler = {group= "androidx.room", name = "room-compiler", version.ref = "room_version"}

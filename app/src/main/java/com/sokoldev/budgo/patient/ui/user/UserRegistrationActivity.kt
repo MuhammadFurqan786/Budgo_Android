@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -20,6 +21,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.sokoldev.budgo.R
+import com.sokoldev.budgo.caregiver.ui.DashboardActivity
 import com.sokoldev.budgo.common.data.remote.network.ApiResponse
 import com.sokoldev.budgo.common.ui.user.LoginActivity
 import com.sokoldev.budgo.common.utils.DatePickerUtils
@@ -29,6 +31,7 @@ import com.sokoldev.budgo.common.utils.prefs.PreferenceHelper
 import com.sokoldev.budgo.common.utils.prefs.PreferenceKeys
 import com.sokoldev.budgo.common.viewmodels.UserViewModel
 import com.sokoldev.budgo.databinding.ActivityUserRegistrationBinding
+import com.sokoldev.budgo.patient.ui.home.HomeActivity
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -89,16 +92,36 @@ class UserRegistrationActivity : AppCompatActivity() {
     }
 
     private fun initObserver() {
-        viewModel.apiResponse.observe(this, Observer {
+        viewModel.apiResponseLogin.observe(this, Observer {
             when (it) {
                 is ApiResponse.Success -> {
-                    binding.spinKit.visibility = View.GONE
-                    if (it.data.status) {
+
+                    if (it.data.data != null) {
+
+                        val user = it.data.data.user
+                        helper.saveCurrentUser(user)
+                        helper.saveStringValue(PreferenceKeys.PREF_USER_TOKEN, it.data.data.token)
+                        helper.setUserLogin(true)
+
+                        Log.d("TOOKEN",""+it.data.data.token)
+                        Log.d("TOOKEN",user.toString())
+                        binding.spinKit.visibility = View.GONE
                         Global.showMessage(
                             binding.root.rootView,
                             it.data.message,
                             Snackbar.LENGTH_SHORT
                         )
+                        val userType = it.data.data.user.type
+                        if (userType == "1") {
+                            val intent = Intent(this@UserRegistrationActivity, HomeActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            val intent = Intent(this@UserRegistrationActivity, LoginActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+
 
                     } else {
                         Global.showErrorMessage(
