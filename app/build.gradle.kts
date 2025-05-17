@@ -64,11 +64,7 @@ dependencies {
     implementation(libs.com.squareup.retrofit2.retrofit.converter)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.com.squareup.okhttp3)
-<<<<<<< HEAD
     implementation(libs.logging.interceptor)
-=======
-    implementation(libs.com.logging.interceptor)
->>>>>>> a4e69efb6fa23fe919b87e392714ea54b84705d4
     implementation(libs.com.github.bumptec.glide)
     implementation(libs.pinview)
     //room
