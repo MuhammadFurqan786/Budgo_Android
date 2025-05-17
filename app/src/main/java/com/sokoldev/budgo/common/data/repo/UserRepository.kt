@@ -69,7 +69,11 @@ class UserRepository() {
                 .build()
 
             // Make the API call
+<<<<<<< HEAD
             val response = apiService.signupCareGiver(requestBody)
+=======
+            val response = apiService.signupCaregiver(requestBody)
+>>>>>>> a4e69efb6fa23fe919b87e392714ea54b84705d4
 
             // Handle the response
             if (response.isSuccessful && response.body() != null) {
@@ -153,7 +157,11 @@ class UserRepository() {
                 .build()
 
             // Make the API call
+<<<<<<< HEAD
             val response = apiService.signupPatient(requestBody)
+=======
+            val response = apiService.signup(requestBody)
+>>>>>>> a4e69efb6fa23fe919b87e392714ea54b84705d4
 
             // Handle the response
             if (response.isSuccessful && response.body() != null) {
@@ -167,6 +175,11 @@ class UserRepository() {
         }
     }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a4e69efb6fa23fe919b87e392714ea54b84705d4
     suspend fun loginUser(
         email: String,
         password: String

@@ -3,7 +3,10 @@ package com.sokoldev.budgo.common.data.remote.network
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
+<<<<<<< HEAD
 import okhttp3.ResponseBody.Companion.toResponseBody
+=======
+>>>>>>> a4e69efb6fa23fe919b87e392714ea54b84705d4
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -57,10 +60,21 @@ object RetrofitClientInstance {
     }
 
 
+    private fun createLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY  // Log Headers + Body
+        }
+    }
+
+
     private val okHttpBuilder = OkHttpClient.Builder()
         .readTimeout(10, TimeUnit.SECONDS)
         .connectTimeout(5, TimeUnit.SECONDS)
+<<<<<<< HEAD
         .addInterceptor(logging)
+=======
+        .addInterceptor(createLoggingInterceptor())
+>>>>>>> a4e69efb6fa23fe919b87e392714ea54b84705d4
         .addInterceptor { chain ->
             val userAgent =
                 "BudgoApp/1.0 (Android ${android.os.Build.VERSION.RELEASE}; ${android.os.Build.MODEL}) [Hostinger]"

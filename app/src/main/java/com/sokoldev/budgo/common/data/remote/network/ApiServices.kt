@@ -23,6 +23,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -35,6 +36,7 @@ interface ApiServices {
 
     /* Auth Api*/
 
+<<<<<<< HEAD
     @POST("auth/signup") // Update the endpoint if necessary
     suspend fun signupCareGiver(
         @Body requestBody: RequestBody
@@ -46,6 +48,19 @@ interface ApiServices {
     ): Response<LoginResponse>
 
 
+=======
+
+    @POST("auth/signup")
+    suspend fun signup(
+        @Body requestBody: RequestBody
+    ): Response<LoginResponse>
+
+    @POST("auth/signup")
+    suspend fun signupCaregiver(
+        @Body requestBody: RequestBody
+    ): Response<DefaultResponse>
+
+>>>>>>> a4e69efb6fa23fe919b87e392714ea54b84705d4
 
 
     @FormUrlEncoded
@@ -56,7 +71,7 @@ interface ApiServices {
     ): Response<LoginResponse>
 
 
-    @GET("auth/forgot-password/{email}")
+    @GET("auth/forget-password/{email}")
     suspend fun forgotUserPasswordApi(
         @Path("email") email: String,
     ): Response<ForgetPasswordResponse>
@@ -166,6 +181,7 @@ interface ApiServices {
     ): Response<CategoryProductResponse>
 
 
+<<<<<<< HEAD
     @GET("app/brand-products/{brand_id}")
     suspend fun productByBrandId(
         @Header("Authorization") token: String,
@@ -178,6 +194,9 @@ interface ApiServices {
         @Header("Authorization") token: String,
         @Header("Content-Type") contentType: String = "application/json"
     ): Response<NewJobResponse>
+=======
+//    Caregiver Side Api
+>>>>>>> a4e69efb6fa23fe919b87e392714ea54b84705d4
 
 
     @FormUrlEncoded
