@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".patient.ui.user.UserRegistrationActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:id="@+id/relative"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/toolbar_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- Back button -->
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:contentDescription="@string/back_button"
+                    android:src="@drawable/baseline_arrow_back_24"
+                    app:tint="@color/white" />
+
+                <!-- Account title -->
+                <TextView
+                    android:id="@+id/title_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:gravity="center"
+                    android:text="@string/edit_profile"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+            </RelativeLayout>
+
+            <!-- White background -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-12dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_white_rounded"
+                android:orientation="vertical"
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@id/relative">
+
+                <!-- Name Input -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:background="@drawable/union">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/nunito_regular"
+                        android:text="@string/name"
+                        android:textColor="@color/black" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/ed_name"
+                        style="@style/TextAppearance.AppCompat.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/white"
+                        android:fontFamily="@font/nunito_regular"
+                        android:hint="@string/full_name"
+
+                        android:inputType="textPersonName"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/text_light" />
+                </RelativeLayout>
+
+                <!-- Phone Input -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/union">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/nunito_regular"
+                        android:text="@string/phone"
+                        android:textColor="@color/black" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/ed_phone"
+                        style="@style/TextAppearance.AppCompat.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/white"
+                        android:fontFamily="@font/nunito_regular"
+                        android:hint="@string/phone_hint"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/text_light" />
+                </RelativeLayout>
+
+
+                <!-- DOB Input -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/union">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/nunito_regular"
+                        android:text="@string/dob"
+                        android:textColor="@color/black" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/ed_dob"
+                        style="@style/TextAppearance.AppCompat.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/white"
+                        android:fontFamily="@font/nunito_regular"
+                        android:hint="@string/dob_hint"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/text_light" />
+                </RelativeLayout>
+
+
+                <!-- Password Input -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/union">
+
+                    <TextView
+                        style="@style/TextAppearance.AppCompat.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/nunito_regular"
+                        android:text="@string/location"
+                        android:textColor="@color/black" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edLocation"
+                        style="@style/TextAppearance.AppCompat.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/white"
+                        android:fontFamily="@font/nunito_regular"
+                        android:hint=""
+                        android:inputType="textPostalAddress"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/text_light" />
+                </RelativeLayout>
+
+                <!-- Continue Button -->
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/continue_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/button_bg"
+                    android:text="@string/save"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/patient_card_section" />
+
+
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/loadingView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+</ScrollView>

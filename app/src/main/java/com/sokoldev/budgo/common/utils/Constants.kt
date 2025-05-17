@@ -17,5 +17,6 @@ class Constants {
         const val POPULAR_FLOWERS = "popular_flowers"
         const val POPULAR_EDIBLES = "popular_edibles"
         const val TOP_SELLER = "top_seller"
+        const val IS_CHANGE_PASSWORD = "is_change_password"
     }
 }

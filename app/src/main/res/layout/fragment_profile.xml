@@ -44,17 +44,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.imageview.ShapeableImageView
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/userImage"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/user_image"
+                app:civ_border_color="@color/primary"
+                app:civ_border_width="2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/circleImageViewRounded" />
-
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/cameraImage"
@@ -94,6 +94,7 @@
                 android:gravity="center"
                 android:text="Edit Profile"
                 android:textColor="@color/text_color" />
+
         </LinearLayout>
 
         <View
@@ -124,6 +125,7 @@
                 android:gravity="center"
                 android:text="Location"
                 android:textColor="@color/text_color" />
+
         </LinearLayout>
 
         <View
@@ -194,7 +196,7 @@
 
 
         <LinearLayout
-            android:id="@+id/reviews"
+            android:id="@+id/changePassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -213,7 +215,7 @@
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/nunito_medium"
                 android:gravity="center"
-                android:text="Reviews"
+                android:text="Change Password"
                 android:textColor="@color/text_color" />
         </LinearLayout>
 
@@ -238,5 +240,11 @@
         android:text="Log Out"
         android:textColor="@color/white" />
 
-
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/loadingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:visibility="gone" />
 </RelativeLayout>

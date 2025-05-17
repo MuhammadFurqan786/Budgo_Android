@@ -3,9 +3,9 @@ package com.sokoldev.budgo.common.data.models.response
 
 import com.google.gson.annotations.SerializedName
 
-data class BookingDetailsResponse(
+data class DriverEarningResponse(
     @SerializedName("data")
-    val `data`: Booking,
+    val `data`: Data,
     @SerializedName("message")
     val message: String,
     @SerializedName("status")

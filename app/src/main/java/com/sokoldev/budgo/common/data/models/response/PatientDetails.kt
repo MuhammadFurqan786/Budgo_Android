@@ -17,5 +17,10 @@ data class PatientDetails(
     @SerializedName("phone")
     val phone: String,
     @SerializedName("profile_image")
-    val profileImage: String
+    val profileImage: String,
+    @SerializedName("patient_card_front_side")
+    val cardFrontImage: String,
+    @SerializedName("patient_card_back_side")
+    val cardBackImage: String
+
 )

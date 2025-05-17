@@ -7,9 +7,9 @@
         android:title="@string/title_tasks" />
 
     <item
-        android:id="@+id/navigation_schedule"
+        android:id="@+id/navigation_job"
         android:icon="@drawable/ic_menu"
-        android:title="@string/title_schedule" />
+        android:title="@string/title_order" />
 
     <item
         android:id="@+id/navigation_account"

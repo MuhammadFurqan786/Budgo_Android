@@ -12,7 +12,7 @@
     <string name="account">Account</string>
     <string name="sign_up">Sign Up</string>
     <string name="user_registration">User Registration</string>
-    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and  Lorem Ipsum is simply dummy text of.\n</string>
+    <string name="user_registration_text">By registering, you confirm that you are at least 21 years old and are legally authorized under Pennsylvania law to participate in the state’s Medical Marijuana Program, either as a patient or a caregiver. </string>
     <string name="full_name">Full Name</string>
     <string name="email_hint">jhonedou12@email.com</string>
     <string name="phone">Phone</string>
@@ -28,28 +28,30 @@
     <string name="already_account">Already Have An Account? <u><b>Sign In</b></u></string>
     <string name="no_account">Don\'t Have An Account? <u><b>Sign Up</b></u></string>
     <string name="terms">
-        .Lorem Ipsum is simply dummy text of the
-printing and  Lorem Ipsum is simply dummy text of \n
-        .Lorem Ipsum is simply dummy text of the
-printing and  Lorem Ipsum is simply dummy text of\n
-        .Lorem Ipsum is simply dummy text of the
-printing and  Lorem Ipsum is simply dummy text of\n
-        .Lorem Ipsum is simply dummy text of the
-printing and  Lorem Ipsum is simply dummy text of\n
-        .Lorem Ipsum is simply dummy text of the
-printing and  Lorem Ipsum is simply dummy text of\n
-        .Lorem Ipsum is simply dummy text of the
-printing and  Lorem Ipsum is simply dummy text of\n
-        .Lorem Ipsum is simply dummy text of the
-printing and  Lorem Ipsum is simply dummy text of\n
-        .Lorem Ipsum is simply dummy text of the
-printing and  Lorem Ipsum is simply dummy text of\n
-        .Lorem Ipsum is simply dummy text of the
-printing and  Lorem Ipsum is simply dummy text of\n
-        .Lorem Ipsum is simply dummy text of the
-printing and  Lorem Ipsum is simply dummy text of.\n
-        .Lorem Ipsum is simply dummy text of the
-        \n.
+        Terms of Service (BudGo - Medical Cannabis App – Montgomery County, PA)\n\n
+
+• You must be 21 years or older and posses a valid Pennsylvania Medical Marijuana ID card issued by the PA Department of Health.\n\n
+
+• This platform facilitates the listing and ordering of medical cannabis products from licensed Pennsylvania dispensaries for eligible patients and caregivers.\n\n
+
+• The app operates independently and is not affiliated with any dispensary. Our caregiver network handles patient-authorized pickup and delivery of ordered products.\n\n
+
+• By using this app, you agree to upload valid documentation: patients must provide a state-issued medical marijuana card, and caregivers must provide valid caregiver certification.\n\n
+
+• All deliveries are conducted exclusively by state-registered caregivers, in compliance with Pennsylvania’s Medical Marijuana Act (Act 16 of 2016).\n\n
+
+• You acknowledge that the products displayed in the app are sourced from third-party dispensaries. The app makes no guarantees about product availability, accuracy, or labeling.\n\n
+
+• The app does not store sensitive medical records of patients. However, caregiver identification and documentation may be retained to comply with legal verification and delivery regulations.\n\n
+
+• You must not attempt to resell, transfer, or distribute any cannabis products obtained through this platform. Doing so violates state and federal law and may result in account termination or legal prosecution.\n\n
+
+• Use of this platform does not constitute medical advice. Please consult a licensed healthcare provider for any medical concerns or questions regarding cannabis use.\n\n
+
+• You agree to receive notifications regarding orders, legal updates, and verification requirements. You may adjust communication preferences at any time.\n\n
+
+• By continuing, you agree to these Terms of Service and acknowledge that violation of these terms may result in suspension, reporting to regulatory authorities, or legal action.\n\n
+
         </string>
     <string name="termsprivacytext">Terms of Services</string>
     <string name="title_activity_home">HomeActivity</string>
@@ -106,7 +108,7 @@ printing and  Lorem Ipsum is simply dummy text of.\n
     <string name="password">Password</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="agree_with_policy">Agree With Policy</string>
+    <string name="agree_with_policy">I agree with and understand the Cancellation Policy.</string>
     <string name="payment_method">Payment Method</string>
     <string name="manage_your_form_1099">Manage your <b>Form 1099</b></string>
 
@@ -125,6 +127,22 @@ printing and  Lorem Ipsum is simply dummy text of.\n
     <string name="new_password">New Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="reset_password">Reset Password</string>
-
-
+    <string name="edit_profile">Edit Profile</string>
+    <string name="location">Location</string>
+    <string name="save">Save</string>
+    <string name="old_password">Old Password</string>
+    <string name="change_password">Change Password</string>
+    <string name="delete_account">Delete Account</string>
+<string name="delivery_instructions">Only deliver cannabis orders to the registered patient or caregiver listed in the order. Before handing over the package, verify their valid Medical Marijuana ID and state-issued photo ID. Do not leave the package unattended or hand it to anyone else. All deliveries must follow PA Department of Health guidelines for caregiver-based transfer.
+</string>
+    <string name="drop_off_photo">To confirm a successful delivery Caregivers must capture proof of handoff.\nTake a clear photo of the patient holding the order, ensuring that the product of package is visible DO NOT include the recipient’s face. This photo serves as proof of handoff and must be securely uploaded for recordkeeping. Do not photograph ID documents.</string>
+    <string name="caregiver_login">To access your BudGo account, please log in using your registered email and password. Caregivers must also upload or confirm a valid Pennsylvania-issued Caregiver Card. By logging in, you agree to comply with all platform policies and state medical cannabis regulations.</string>
+    <string name="patient_login">To access your BudGo account, please log in using your registered email and password. </string>
+    <string name="cancellation_policy">
+        <b>Cancellation Policy:</b>\n\n
+	•	All orders placed through BudGo are final and cannot be canceled once confirmed.\n\n
+	•	Due to the nature of medical cannabis and Pennsylvania state regulations, no refunds, returns, or exchanges are permitted under any circumstances.\n\n
+	•	If a patient is unavailable at the time of delivery, the caregiver will attempt one follow-up contact. If unsuccessful, the product will be returned to the originating dispensary (if possible) or securely disposed of, and no refund will be issued.\n\n
+	•	Submitting false information or attempting to reverse transactions may result in permanent suspension and reporting to state authorities.\n\n
+    </string>
 </resources>

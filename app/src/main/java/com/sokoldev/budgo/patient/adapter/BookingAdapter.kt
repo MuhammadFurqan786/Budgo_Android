@@ -11,12 +11,16 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sokoldev.budgo.R
+import com.sokoldev.budgo.caregiver.ui.task.DispensariesActivity
+import com.sokoldev.budgo.caregiver.ui.task.TaskDetailsActivity
 import com.sokoldev.budgo.common.data.models.response.Booking
-import com.sokoldev.budgo.common.utils.Global
+import com.sokoldev.budgo.common.utils.OrderStatus
 import com.sokoldev.budgo.common.utils.prefs.PreferenceKeys.Companion.BOOKING
+import com.sokoldev.budgo.common.utils.prefs.PreferenceKeys.Companion.BOOKING_ID
+import com.sokoldev.budgo.common.utils.prefs.PreferenceKeys.Companion.FROM_BOOKING
 import com.sokoldev.budgo.patient.ui.order.BookingDetailsActivity
 
-class BookingAdapter(private val bookingList: List<Booking>) :
+class BookingAdapter(private val bookingList: List<Booking>, private val isPatient: Boolean) :
     RecyclerView.Adapter<BookingAdapter.BookingViewHolder>() {
     private lateinit var context: Context
 
@@ -40,22 +44,66 @@ class BookingAdapter(private val bookingList: List<Booking>) :
     override fun onBindViewHolder(holder: BookingViewHolder, position: Int) {
 
         val currentItem = bookingList[position]
-        currentItem.products[0].productImage.let {
-            Glide.with(context).load(it).into(holder.productImage)
+
+        if (currentItem.products?.isNotEmpty() == true) {
+            currentItem.products[0]?.productImage?.let {
+                loadImageWithBaseUrlFallback(holder.productImage, it)
+            }
+            currentItem.products[0]?.productName.let { holder.productName.text = it }
+            currentItem.products[0]?.category.let { holder.categoryName.text = it }
+            currentItem.products[0]?.productType.let { holder.productType.text = it }
+            currentItem.products.size.let { holder.productQuantity.text = it.toString() }
         }
-        currentItem.products[0].productName.let { holder.productName.text = it }
-        currentItem.products[0].category.let { holder.categoryName.text = it }
-        currentItem.amount.let { holder.productPrice.text = "$$it.00" }
-        currentItem.products[0].productType.let { holder.productType.text = it }
-        currentItem.products.size.let { holder.productQuantity.text = it.toString() }
+        currentItem.amount.let { holder.productPrice.text = "$$it" }
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, BookingDetailsActivity::class.java)
-            intent.putExtra(BOOKING, currentItem)
-            context.startActivity(intent)
+            if (isPatient) {
+                val intent = Intent(context, BookingDetailsActivity::class.java)
+                intent.putExtra(BOOKING, currentItem)
+                context.startActivity(intent)
+            } else {
+                if (currentItem.orderStatus == OrderStatus.ACCEPTED) {
+                    val intent = Intent(context, DispensariesActivity::class.java)
+                    intent.putExtra(BOOKING_ID, currentItem.id.toString())
+                    context.startActivity(intent)
+                } else if (currentItem.orderStatus == OrderStatus.COMPLETED) {
+                    val intent = Intent(context, BookingDetailsActivity::class.java)
+                    intent.putExtra(BOOKING, currentItem)
+                    context.startActivity(intent)
+                } else {
+                    val intent = Intent(context, TaskDetailsActivity::class.java)
+                    intent.putExtra(BOOKING_ID, currentItem.id.toString())
+                    intent.putExtra(FROM_BOOKING, true)
+                    context.startActivity(intent)
+                }
+            }
         }
     }
 
 
     override fun getItemCount() = bookingList.size
+
+    private fun loadImageWithBaseUrlFallback(imageView: AppCompatImageView, originalUrl: String) {
+        // Sanitize the original URL by replacing spaces
+        val safeOriginalUrl = originalUrl.replace(" ", "%20")
+
+        // Replace base URL and sanitize the fallback as well
+        val modifiedUrl = safeOriginalUrl.replace(
+            "https://budgo.net/budgo/public/",
+            "https://admin.budgo.net/"
+        )
+
+        // Build the fallback request with the safe original URL
+        val fallbackRequest = Glide.with(imageView.context)
+            .load(safeOriginalUrl)
+
+        // Start primary request with fallback
+        Glide.with(imageView.context)
+            .load(modifiedUrl)
+            .error(fallbackRequest) // Try this if the primary fails
+            .into(imageView)
+    }
+
+
+
 }

@@ -3,6 +3,7 @@ package com.sokoldev.budgo.patient.ui.menu
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -46,13 +47,14 @@ class ProductDetailsActivity : AppCompatActivity() {
                 product.productName.let { productName.text = it }
                 product.productPrice.let { productPrice.text = "$$it" }
                 product.productDescription.let { productDesc.text = it }
-                product.productImage.let {
-                    Glide.with(this@ProductDetailsActivity).load(it).into(productImage)
+                product.temperature.let { tValue.text = "Weight : $it" }
+                product.condition.let { cValue.text = "THC : $it" }
+                product.productImage?.let {
+                    loadImageWithBaseUrlFallback(productImage,it)
                 }
                 product.productName.let { productName.text = it }
             }
         }
-
 
         // Set click listener for plus button
         binding.buttonPlus.setOnClickListener {
@@ -67,16 +69,24 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
         }
 
+        binding.back.setOnClickListener {
+            finish()
+        }
+
         binding.addToCart.setOnClickListener {
 
             val cart = product?.let { it1 ->
-                CartItem(
-                    it1.id,
-                    quantity,
-                    product.productImage,
-                    product.productName,
-                    product.productPrice.toInt()
-                )
+                it1.id?.let { it2 ->
+                    product.productPrice?.let { it3 ->
+                        CartItem(
+                            it2,
+                            quantity,
+                            product.productImage!!,
+                            product.productName!!,
+                            it3.toInt()
+                        )
+                    }
+                }
             }
             if (cart != null) {
                 cartViewModel.addToCart(cart)
@@ -87,7 +97,28 @@ class ProductDetailsActivity : AppCompatActivity() {
             val intent = Intent(this, HomeActivity::class.java)
             intent.putExtra("destination", R.id.navigation_cart)
             startActivity(intent)
-
         }
     }
+    private fun loadImageWithBaseUrlFallback(imageView: ImageView, originalUrl: String) {
+        // Sanitize the original URL by replacing spaces
+        val safeOriginalUrl = originalUrl.replace(" ", "%20")
+
+        // Replace base URL and sanitize the fallback as well
+        val modifiedUrl = safeOriginalUrl.replace(
+            "https://budgo.net/budgo/public/",
+            "https://admin.budgo.net/"
+        )
+
+        // Build the fallback request with the safe original URL
+        val fallbackRequest = Glide.with(imageView.context)
+            .load(safeOriginalUrl)
+
+        // Start primary request with fallback
+        Glide.with(imageView.context)
+            .load(modifiedUrl)
+            .error(fallbackRequest) // Try this if the primary fails
+            .into(imageView)
+    }
+
+
 }

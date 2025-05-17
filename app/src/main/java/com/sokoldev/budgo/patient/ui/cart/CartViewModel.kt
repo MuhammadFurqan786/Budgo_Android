@@ -6,8 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sokoldev.budgo.common.data.local.CartDao
 import com.sokoldev.budgo.common.data.local.CartItem
+import com.sokoldev.budgo.common.data.models.response.DefaultResponse
+import com.sokoldev.budgo.common.data.remote.network.ApiResponse
+import com.sokoldev.budgo.common.data.repo.AppRepository
 import com.sokoldev.budgo.common.data.repo.CartRepository
-import com.sokoldev.budgo.patient.models.Cart
+import com.sokoldev.budgo.patient.models.request.PlaceOrderRequest
 import kotlinx.coroutines.launch
 
 class CartViewModel(cartDao: CartDao) : ViewModel() {
@@ -17,7 +20,14 @@ class CartViewModel(cartDao: CartDao) : ViewModel() {
         get() = _listCart
 
 
+    private val _placeOrderResponse: MutableLiveData<ApiResponse<DefaultResponse>> =
+        MutableLiveData()
+    val placeOrderResponse: LiveData<ApiResponse<DefaultResponse>>
+        get() = _placeOrderResponse
+
+
     private val repository = CartRepository(cartDao)
+    private val appRepository = AppRepository()
 
     // Method to add item to the cart
     fun addToCart(cartItem: CartItem) {
@@ -56,4 +66,20 @@ class CartViewModel(cartDao: CartDao) : ViewModel() {
             _listCart.value = items
         }
     }
+
+    fun placeOrder(
+        token: String,
+        placeOrderRequest: PlaceOrderRequest
+    ) {
+        viewModelScope.launch {
+            _placeOrderResponse.value = ApiResponse.Loading
+            val response = appRepository.placeOrder(
+                token = token,
+                placeOrderRequest
+            )
+            _placeOrderResponse.value = response
+        }
+    }
+
+
 }

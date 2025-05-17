@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "127813792031",
+    "project_id": "budgo-591e4",
+    "storage_bucket": "budgo-591e4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127813792031:android:75bb5509a7fa55d34e402a",
+        "android_client_info": {
+          "package_name": "com.sokoldev.budgo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6CKT-ZKlaZXul-dA6ajB1_mBO8GQQau8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

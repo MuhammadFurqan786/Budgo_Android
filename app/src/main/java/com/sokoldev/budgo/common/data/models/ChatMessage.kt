@@ -1,7 +1,7 @@
 package com.sokoldev.budgo.common.data.models
 
 data class ChatMessage(
-    val message: String,
-    val profileImage: Int,
-    val isSender: Boolean
+    val senderId: String = "",
+    val message: String = "",
+    val timestamp: Long = System.currentTimeMillis()
 )

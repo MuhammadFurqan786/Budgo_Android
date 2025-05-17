@@ -1,49 +1,52 @@
 package com.sokoldev.budgo.common.data.models.response
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class User(
     @SerializedName("caregiver_card_back_side")
-    val caregiverCardBackSide: String,
+    val caregiverCardBackSide: String?,
     @SerializedName("caregiver_card_front_side")
-    val caregiverCardFrontSide: String,
+    val caregiverCardFrontSide: String?,
     @SerializedName("caregiver_type")
-    val caregiverType: String,
+    val caregiverType: String?,
     @SerializedName("device_type")
-    val deviceType: String,
+    val deviceType: String?,
     @SerializedName("dob")
-    val dob: String,
+    val dob: String?,
     @SerializedName("driving_license_back_side")
-    val drivingLicenseBackSide: String,
+    val drivingLicenseBackSide: String?,
     @SerializedName("driving_license_front_side")
-    val drivingLicenseFrontSide: String,
+    val drivingLicenseFrontSide: String?,
     @SerializedName("email")
-    val email: String,
+    val email: String?,
     @SerializedName("id")
-    val id: Int,
+    val id: Int?,
     @SerializedName("is_online")
-    val isOnline: Int,
+    val isOnline: Int?,
     @SerializedName("is_verified")
-    val isVerified: Int,
+    val isVerified: Int?,
     @SerializedName("latitude")
-    val latitude: String,
+    val latitude: String?,
     @SerializedName("location")
-    val location: String,
+    val location: String?,
     @SerializedName("longitude")
-    val longitude: String,
+    val longitude: String?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("patient_card_back_side")
-    val patientCardBackSide: String,
+    val patientCardBackSide: String?,
     @SerializedName("patient_card_front_side")
-    val patientCardFrontSide: String,
+    val patientCardFrontSide: String?,
     @SerializedName("phone")
-    val phone: String,
+    val phone: String?,
     @SerializedName("profile_image")
-    val profileImage: String,
+    val profileImage: String?,
     @SerializedName("token")
-    val token: String,
+    val token: String?,
     @SerializedName("type")
-    val type: String
-)
+    val type: String?
+):Parcelable

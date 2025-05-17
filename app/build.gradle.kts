@@ -3,7 +3,9 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.googleAndroidLibrariesMapsplatformSecretsGradlePlugin)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.googleServices)
     id("kotlin-parcelize")
+
 }
 
 android {
@@ -16,7 +18,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -55,6 +56,7 @@ dependencies {
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.play.services.maps)
+    implementation(libs.google.map.utils)
     implementation(libs.com.github.chinalwb)
     implementation(libs.com.github.philjay)
     implementation(libs.com.google.gson)
@@ -62,15 +64,34 @@ dependencies {
     implementation(libs.com.squareup.retrofit2.retrofit.converter)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.com.squareup.okhttp3)
+    implementation(libs.logging.interceptor)
     implementation(libs.com.github.bumptec.glide)
     implementation(libs.pinview)
     //room
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.play.services.location)
     ksp(libs.androidx.room.compiler)
 
+    //paging
+    implementation(libs.paging)
 
+    // Stripe
     implementation(libs.stripe)
+    // circle image view
+    implementation(libs.circleimageview)
+
+
+    // CameraX
+    implementation(libs.androidx.camera2)
+    implementation(libs.androidx.camera2.lifecycle)
+    implementation(libs.androidx.camera2.view)
+
+    // ML kit Text Recoginition
+    implementation(libs.ml.kit.text.recognition)
+
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

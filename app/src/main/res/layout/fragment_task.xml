@@ -25,7 +25,7 @@
 
             <!-- Account title -->
             <ImageView
-                android:id="@+id/back"
+                android:id="@+id/notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -61,6 +61,7 @@
             app:layout_constraintTop_toBottomOf="@id/relative">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/onlineStatus"
                 style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,7 +81,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
                     <fragment
                         android:id="@+id/map"
                         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -109,7 +109,6 @@
                     android:text="@string/request_for_jobs"
                     android:textColor="@color/text_color" />
 
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvJobs"
                     android:layout_width="match_parent"
@@ -122,5 +121,9 @@
             </LinearLayout>
 
         </LinearLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </ScrollView>

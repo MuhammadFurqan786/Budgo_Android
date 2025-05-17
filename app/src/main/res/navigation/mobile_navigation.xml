@@ -21,19 +21,29 @@
         android:id="@+id/navigation_profile"
         android:name="com.sokoldev.budgo.patient.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_navigation_profile_to_completeOrderFragment"
+            app:destination="@id/completeOrderFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_updateProfileFragment"
+            app:destination="@id/updateProfileFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_resetPasswordFragment2"
+            app:destination="@id/resetPasswordFragment2" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_order"
         android:name="com.sokoldev.budgo.patient.ui.order.OrderFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_order" />
 
     <fragment
         android:id="@+id/navigation_cart"
         android:name="com.sokoldev.budgo.patient.ui.cart.CartFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_cart" >
         <action
             android:id="@+id/action_navigation_cart_to_cancellationFragment"
             app:destination="@id/cancellationFragment" />
@@ -46,5 +56,18 @@
             android:id="@+id/action_cancellationFragment_to_navigation_cart"
             app:destination="@id/navigation_cart" />
     </fragment>
+    <fragment
+        android:id="@+id/completeOrderFragment"
+        android:name="com.sokoldev.budgo.common.ui.orders.CompleteOrderFragment"
+        android:label="CompleteOrderFragment" />
+    <fragment
+        android:id="@+id/updateProfileFragment"
+        android:name="com.sokoldev.budgo.patient.ui.profile.UpdateProfileFragment"
+        android:label="UpdateProfileFragment" />
+    <fragment
+        android:id="@+id/resetPasswordFragment2"
+        android:name="com.sokoldev.budgo.common.ui.user.ResetPasswordFragment"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password" />
 
 </navigation>

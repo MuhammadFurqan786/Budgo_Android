@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.sokoldev.budgo.R
+import com.sokoldev.budgo.common.utils.prefs.PreferenceKeys
 import com.sokoldev.budgo.databinding.FragmentCancellationBinding
 import com.sokoldev.budgo.patient.ui.payment.AddPaymentActivity
 
@@ -34,7 +37,9 @@ class CancellationFragment : Fragment() {
             continueButton.setOnClickListener {
                 val isChecked = checkBox.isChecked
                 if (isChecked) {
-                    startActivity(Intent(context, AddPaymentActivity::class.java))
+                    val bundle =  Bundle()
+                    bundle.putBoolean(PreferenceKeys.IS_READ,true)
+                    findNavController().navigate(R.id.action_cancellationFragment_to_navigation_cart,bundle)
                 } else {
                     Toast.makeText(
                         context,

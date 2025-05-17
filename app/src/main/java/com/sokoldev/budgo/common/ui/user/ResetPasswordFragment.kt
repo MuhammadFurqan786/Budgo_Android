@@ -9,10 +9,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.sokoldev.budgo.common.data.remote.network.ApiResponse
 import com.sokoldev.budgo.common.utils.Constants
 import com.sokoldev.budgo.common.utils.Global
+import com.sokoldev.budgo.common.utils.prefs.PreferenceHelper
+import com.sokoldev.budgo.common.utils.prefs.PreferenceKeys
 import com.sokoldev.budgo.common.viewmodels.UserViewModel
 import com.sokoldev.budgo.databinding.FragmentResetPasswordBinding
 
@@ -22,6 +25,8 @@ class ResetPasswordFragment : Fragment() {
     private val binding get() = _binding
     private var email: String? = ""
     private val viewModel: UserViewModel by viewModels()
+    private var isChangePassword = false
+    private lateinit var helper: PreferenceHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +45,32 @@ class ResetPasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         email = arguments?.getString(Constants.EMAIL)
+        helper = PreferenceHelper.getPref(requireContext())
+        isChangePassword = arguments?.getBoolean(Constants.IS_CHANGE_PASSWORD) ?: false
+
+        if (isChangePassword) {
+            binding.back.visibility = View.VISIBLE
+            binding.changePasswordLayout.visibility = View.VISIBLE
+            binding.resetPasswordFragment.visibility = View.GONE
+        } else {
+            binding.changePasswordLayout.visibility = View.GONE
+            binding.resetPasswordFragment.visibility = View.VISIBLE
+        }
 
         email?.let { Global.showMessage(binding.root.rootView, it, Snackbar.LENGTH_SHORT) }
-        binding.back.setOnClickListener {
-            requireActivity().onBackPressed()
+
+        if (isChangePassword) {
+            binding.back.setOnClickListener {
+                findNavController().navigateUp()
+            }
+        } else {
+            binding.back.setOnClickListener {
+                requireActivity().onBackPressed()
+            }
         }
+
+
+
         binding.resetButton.setOnClickListener {
 
             val newPassword = binding.edPassword.text.toString().trim()
@@ -54,6 +80,25 @@ class ResetPasswordFragment : Fragment() {
                 viewModel.resetUserPassword(email.toString(), newPassword)
             } else {
                 binding.edConfirmPassword.error = "Password does not match"
+            }
+
+        }
+
+        binding.changePasswordButton.setOnClickListener {
+
+            val newPassword = binding.edNewPassword.text.toString().trim()
+            val oldPassword = binding.edOldPassword.text.toString().trim()
+
+            if (newPassword.isNotEmpty() && oldPassword.isNotEmpty()) {
+                helper.getStringValue(PreferenceKeys.PREF_USER_TOKEN)?.let { it1 ->
+                    viewModel.changeUserPassword(
+                        token = it1,
+                        oldPassword,
+                        newPassword
+                    )
+                }
+            } else {
+                binding.edConfirmPassword.error = "Please enter password"
             }
 
         }

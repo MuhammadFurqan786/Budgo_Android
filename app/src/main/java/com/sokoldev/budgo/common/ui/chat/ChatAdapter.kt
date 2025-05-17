@@ -4,65 +4,78 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 import com.sokoldev.budgo.R
 import com.sokoldev.budgo.common.data.models.ChatMessage
 
-class ChatAdapter(private val chatMessages: List<com.sokoldev.budgo.common.data.models.ChatMessage>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ChatAdapter(
+    private val messages: List<ChatMessage>,
+    private val currentUserId: String,
+    private val profileImage: String,
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    companion object {
-        const val VIEW_TYPE_SENDER = 1
-        const val VIEW_TYPE_RECEIVER = 2
-    }
+    private val VIEW_TYPE_SENDER = 1
+    private val VIEW_TYPE_RECEIVER = 2
 
     override fun getItemViewType(position: Int): Int {
-        return if (chatMessages[position].isSender) {
-            VIEW_TYPE_SENDER
-        } else {
-            VIEW_TYPE_RECEIVER
-        }
+        return if (messages[position].senderId == currentUserId) VIEW_TYPE_SENDER else VIEW_TYPE_RECEIVER
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
         return if (viewType == VIEW_TYPE_SENDER) {
-            val view =
-                LayoutInflater.from(parent.context).inflate(R.layout.item_sender, parent, false)
+            val view = inflater.inflate(R.layout.item_sender, parent, false)
             SenderViewHolder(view)
         } else {
-            val view =
-                LayoutInflater.from(parent.context).inflate(R.layout.item_reciver, parent, false)
+            val view = inflater.inflate(R.layout.item_reciver, parent, false)
             ReceiverViewHolder(view)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val message = chatMessages[position]
+        val msg = messages[position]
         if (holder is SenderViewHolder) {
-            holder.bind(message)
+            holder.msg.text = msg.message
         } else if (holder is ReceiverViewHolder) {
-            holder.bind(message)
+            holder.msg.text = msg.message
+            loadImageWithBaseUrlFallback(holder.profileImage, profileImage)
         }
     }
 
-    override fun getItemCount(): Int {
-        return chatMessages.size
+    override fun getItemCount(): Int = messages.size
+
+    class SenderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val msg: AppCompatTextView = view.findViewById(R.id.message)
     }
 
-    class SenderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val textMessage: TextView = itemView.findViewById(R.id.message)
-        fun bind(chatMessage: com.sokoldev.budgo.common.data.models.ChatMessage) {
-            textMessage.text = chatMessage.message
-        }
+    class ReceiverViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val msg: AppCompatTextView = view.findViewById(R.id.message)
+        val profileImage: ShapeableImageView = view.findViewById(R.id.profile_image)
     }
 
-    class ReceiverViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val textMessage: TextView = itemView.findViewById(R.id.message)
-        private val profileImage: ShapeableImageView = itemView.findViewById(R.id.profile_image)
-        fun bind(chatMessage: com.sokoldev.budgo.common.data.models.ChatMessage) {
-            textMessage.text = chatMessage.message
-            profileImage.setImageResource(chatMessage.profileImage)
-        }
+    private fun loadImageWithBaseUrlFallback(imageView: ShapeableImageView, originalUrl: String) {
+        // Sanitize the original URL by replacing spaces
+        val safeOriginalUrl = originalUrl.replace(" ", "%20")
+
+        // Replace base URL and sanitize the fallback as well
+        val modifiedUrl = safeOriginalUrl.replace(
+            "https://budgo.net/budgo/public/",
+            "https://admin.budgo.net/"
+        )
+
+        // Build the fallback request with the safe original URL
+        val fallbackRequest = Glide.with(imageView.context)
+            .load(safeOriginalUrl)
+
+        // Start primary request with fallback
+        Glide.with(imageView.context)
+            .load(modifiedUrl)
+            .error(fallbackRequest) // Try this if the primary fails
+            .into(imageView)
     }
 }
+

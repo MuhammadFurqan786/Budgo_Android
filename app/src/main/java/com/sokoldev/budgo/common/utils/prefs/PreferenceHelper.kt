@@ -3,6 +3,8 @@ package com.sokoldev.budgo.common.utils.prefs
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
+import com.sokoldev.budgo.common.data.models.response.Job
+import com.sokoldev.budgo.common.data.models.response.LoginData
 import com.sokoldev.budgo.common.data.models.response.User
 
 class PreferenceHelper {
@@ -54,6 +56,21 @@ class PreferenceHelper {
         val json = preferences.getString(PreferenceKeys.KEY_PREF_USER, null)
         json?.let {
             return gson.fromJson(json, User::class.java)
+        }
+        return null
+    }
+
+    fun saveCurrentJob(job: Job?) {
+        val gson = Gson()
+        val json = gson.toJson(job)
+        preferences.edit().putString(PreferenceKeys.KEY_PREF_JOB, json).apply()
+    }
+
+    fun getCurrentJob(): Job? {
+        val gson = Gson()
+        val json = preferences.getString(PreferenceKeys.KEY_PREF_JOB, null)
+        json?.let {
+            return gson.fromJson(json, Job::class.java)
         }
         return null
     }

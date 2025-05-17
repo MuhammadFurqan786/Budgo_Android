@@ -29,6 +29,13 @@ room_version =  "2.6.1"
 ksp = "1.9.0-1.0.12"
 pinview = "3.1.0"
 stripe = "21.4.1"
+paging = "3.1.1"
+firebaseDatabaseKtx = "21.0.0"
+maputils = "2.2.5"
+camerax = "1.3.0"
+textRecogintion = "16.0.0"
+playServicesLocation = "21.3.0"
+circleimageview = "3.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,6 +53,7 @@ androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation
 androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
+google-map-utils = { group = "com.google.maps.android", name = "android-maps-utils", version.ref = "maputils" }
 com-github-chinalwb = { group = "com.github.chinalwb", name = "slidetoconfirm", version.ref = "slidetoconfirm" }
 com-github-philjay = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "mpandroidchart" }
 com-google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
@@ -53,12 +61,21 @@ com-squareup-retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "re
 com-squareup-retrofit2-retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit-converter" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 com-squareup-okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 com-github-bumptec-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room_version" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room_version" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room_version" }
 pinview = { group = "com.github.mukeshsolanki.android-otpview-pinview", name = "otpview", version.ref = "pinview" }
 stripe = {group = "com.stripe", name ="stripe-android", version.ref = "stripe"}
+paging = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
+firebase-database-ktx = { group = "com.google.firebase", name = "firebase-database-ktx", version.ref = "firebaseDatabaseKtx" }
+androidx-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "camerax" }
+androidx-camera2-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "camerax" }
+androidx-camera2-view = { group = "androidx.camera", name = "camera-view", version.ref = "camerax" }
+ml-kit-text-recognition = { group = "com.google.mlkit", name = "text-recognition", version.ref = "textRecogintion" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+circleimageview = { group = "de.hdodenhof", name = "circleimageview", version.ref = "circleimageview" }
 
 
 [plugins]
@@ -67,4 +84,5 @@ jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "k
 googleAndroidLibrariesMapsplatformSecretsGradlePlugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "googleAndroidLibrariesMapsplatformSecretsGradlePlugin" }
 roomlibrary = { id = 'androidx.room', version.ref = "room_version"}
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+googleServices = { id = "com.google.gms.google-services", version = "4.4.2" }
 

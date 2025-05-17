@@ -12,8 +12,20 @@ class PreferenceKeys {
         const val PREF_USER_TYPE = "user_type"
         const val PREF_USER_TOKEN = "user_token"
 
+
+        const val KEY_PREF_JOB = "pref_key_job"
+        const val IS_ONLINE = "is_online"
+
         const val KEY_LATITUDE = "latitude"
         const val KEY_LONGITUDE = "longitude"
         const val BOOKING = "booking"
+        const val BOOKING_ID = "booking_id"
+        const val FROM_BOOKING = "from_booking"
+        const val DISPENSORY = "dispensory"
+        const val Is_FIRST_NAVIGATING = "is_first_navigating"
+        const val CURRENT_BOOKING_STATUS = "current_booking_status"
+        const val IS_CURRENT_BOOKING = "is_current_booking"
+        const val PATIENT_CARD_FRONT = "patient_card_front"
+        const val IS_READ = "is_read"
     }
 }

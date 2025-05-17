@@ -45,7 +45,7 @@
     </RelativeLayout>
 
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,10 +56,78 @@
         android:padding="16dp">
 
 
+        <androidx.camera.view.PreviewView
+            android:id="@+id/viewFinder"
+            android:layout_width="match_parent"
+            android:layout_height="198dp"
+            android:layout_marginHorizontal="4dp" />
+
+        <View
+            android:id="@+id/scannerFrame"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/scanner_border" />
+
+    </RelativeLayout>
+    <!-- Show Captured Image -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout"
+        android:orientation="vertical">
+
         <ImageView
+            android:id="@+id/capturedImage"
+            android:layout_width="match_parent"
+            android:layout_height="198dp"
+            android:layout_margin="16dp"
+            android:scaleType="fitCenter"
+            android:visibility="gone" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/scanner" />
+            android:gravity="center">
+
+
+            <Button
+                android:id="@+id/resetButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/capturedImage"
+                android:text="Reset"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/captureButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Capture" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/TextAppearance.AppCompat.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/nunito_bold"
+            android:gravity="center"
+            android:text="Approve Manually"
+            android:textColor="@color/primary" />
+
+        <ImageView
+            android:id="@+id/cardImageFromDB"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="fitCenter" />
+
 
     </LinearLayout>
 

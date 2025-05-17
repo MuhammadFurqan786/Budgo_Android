@@ -46,6 +46,11 @@ class LoginActivity : AppCompatActivity() {
         binding.continueButton.setOnClickListener {
             loginUser()
         }
+        if (isPatientUser){
+            binding.description.text = getString(R.string.patient_login)
+        }else{
+            binding.description.text = getString(R.string.caregiver_login)
+        }
 
         binding.signup.setOnClickListener {
             if (isPatientUser) {
@@ -80,6 +85,7 @@ class LoginActivity : AppCompatActivity() {
                         helper.saveStringValue(PreferenceKeys.PREF_USER_TOKEN, it.data.data.token)
                         helper.setUserLogin(true)
 
+
                         Log.d("TOOKEN",""+it.data.data.token)
                         Log.d("TOOKEN",user.toString())
                         Global.showMessage(
@@ -89,13 +95,14 @@ class LoginActivity : AppCompatActivity() {
                         )
                         val userType = it.data.data.user.type
                         if (userType == "1") {
+                            helper.setPatientUser(true)
                             val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                             startActivity(intent)
                         } else {
+                            helper.setPatientUser(false)
                             val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
                             startActivity(intent)
                         }
-
 
                     } else {
                         Global.showErrorMessage(

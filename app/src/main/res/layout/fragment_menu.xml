@@ -76,6 +76,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/nunito_bold"
                 android:gravity="center"
+                android:visibility="gone"
                 android:text="@string/categories"
                 android:textColor="@color/black" />
 
@@ -84,6 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:visibility="gone"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_brand" />

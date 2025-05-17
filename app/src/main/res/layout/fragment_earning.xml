@@ -62,6 +62,7 @@
                     android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/todayDate"
                         style="@style/TextAppearance.AppCompat.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -72,6 +73,7 @@
                         android:textColor="@color/text_color" />
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/todayEarnings"
                         style="@style/TextAppearance.AppCompat.Display1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -206,6 +208,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/acceptanceRate"
                     style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

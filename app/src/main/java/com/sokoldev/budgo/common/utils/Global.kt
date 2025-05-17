@@ -39,6 +39,9 @@ object Global {
         }
     }
 
+    fun String.toReadableFormat(): String {
+        return this.split("_").joinToString(" ") { it.replaceFirstChar { c -> c.uppercaseChar() } }
+    }
 
 
 

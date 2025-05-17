@@ -1,5 +1,6 @@
 package com.sokoldev.budgo.patient.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.sokoldev.budgo.common.data.remote.network.ApiResponse
+import com.sokoldev.budgo.common.ui.notification.NotificationActivity
 import com.sokoldev.budgo.common.utils.Global
 import com.sokoldev.budgo.common.utils.prefs.PreferenceHelper
 import com.sokoldev.budgo.common.utils.prefs.PreferenceKeys
@@ -37,6 +39,10 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        binding.notification.setOnClickListener {
+            startActivity(Intent(requireContext(), NotificationActivity::class.java))
+        }
 
         helper.getStringValue(PreferenceKeys.PREF_USER_TOKEN).let {
             if (it != null) {

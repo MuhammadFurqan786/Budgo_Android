@@ -52,14 +52,21 @@ class OrderFragment : Fragment() {
             when (it) {
                 is ApiResponse.Success -> {
 
-                    if (it.data.data.currentBookings != null) {
+                    if (it.data.data != null) {
                         val list = it.data.data.currentBookings
-                        val adapter = BookingAdapter(list)
-                        binding.rvOrders.adapter = adapter
-                        binding.rvOrders.visibility = View.VISIBLE
+                        val adapter = BookingAdapter(list, true)
+                        binding.rvCurrentOrders.adapter = adapter
+
+                        val list2 = it.data.data.completedBookings
+                        val adapter2 = BookingAdapter(list2,true)
+                        binding.rvCompletedOrders.adapter = adapter2
+
+                        binding.rvCurrentOrders.visibility = View.VISIBLE
+                        binding.rvCompletedOrders.visibility = View.VISIBLE
                         binding.dataLayout.visibility = View.VISIBLE
                         binding.loadingView.visibility = View.GONE
-                    } else {
+                    }
+                    else {
                         Global.showErrorMessage(
                             binding.root.rootView,
                             it.data.message,

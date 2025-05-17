@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.sokoldev.budgo.common.data.models.response.DefaultResponse
 import com.sokoldev.budgo.common.data.models.response.ForgetPasswordResponse
 import com.sokoldev.budgo.common.data.models.response.LoginResponse
+import com.sokoldev.budgo.common.data.models.response.UpdateProfileResponse
 import com.sokoldev.budgo.common.data.remote.network.ApiResponse
 import com.sokoldev.budgo.common.data.repo.UserRepository
 import kotlinx.coroutines.launch
@@ -25,6 +26,10 @@ class UserViewModel : ViewModel() {
     private val _apiResponseLogin: MutableLiveData<ApiResponse<LoginResponse>> = MutableLiveData()
     val apiResponseLogin: LiveData<ApiResponse<LoginResponse>>
         get() = _apiResponseLogin
+
+    private val _apiResponseProfile: MutableLiveData<ApiResponse<UpdateProfileResponse>> = MutableLiveData()
+    val apiResponseProfile: LiveData<ApiResponse<UpdateProfileResponse>>
+        get() = _apiResponseProfile
 
 
     private val _apiResponseForgotPassword: MutableLiveData<ApiResponse<ForgetPasswordResponse>> =
@@ -64,7 +69,6 @@ class UserViewModel : ViewModel() {
                 cgFrontSide,
                 cgBackSide
             )
-
             _apiResponse.value = response
         }
 
@@ -84,7 +88,7 @@ class UserViewModel : ViewModel() {
 
     ) {
         viewModelScope.launch {
-            _apiResponse.value = ApiResponse.Loading
+            _apiResponseLogin.value = ApiResponse.Loading
             val response = userRepository.createPatientUser(
                 fullName,
                 email1,
@@ -98,7 +102,7 @@ class UserViewModel : ViewModel() {
                 ptBackSide
             )
 
-            _apiResponse.value = response
+            _apiResponseLogin.value = response
         }
 
     }
@@ -119,6 +123,40 @@ class UserViewModel : ViewModel() {
         }
 
     }
+
+    fun updateProfile(
+        token: String,
+        name: String,
+        phone: String,
+        dob: String,
+        latitude: String,
+        longitude: String
+    ) {
+        viewModelScope.launch {
+            _apiResponseProfile.value = ApiResponse.Loading
+            val response = userRepository.updateProfile(
+                token,
+                name, phone, dob, latitude, longitude
+            )
+            _apiResponseProfile.value = response
+        }
+    }
+
+    fun updateProfileImage(
+        token: String,
+        image: File
+    ) {
+        viewModelScope.launch {
+            _apiResponseProfile.value = ApiResponse.Loading
+            val response = userRepository.updateProfileImage(
+                token,
+                image
+            )
+            _apiResponseProfile.value = response
+        }
+
+    }
+
 
     fun forgotUserPassword(
         email1: String
@@ -147,7 +185,6 @@ class UserViewModel : ViewModel() {
 
             _apiResponse.value = response
         }
-
     }
 
 

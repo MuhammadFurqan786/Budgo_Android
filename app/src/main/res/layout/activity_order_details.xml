@@ -66,6 +66,7 @@
             android:textColor="@color/text_color" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dispenary_name"
             style="@style/TextAppearance.AppCompat.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,6 +90,21 @@
                     android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
                     android:layout_height="250dp" />
+
+                <Button
+                    android:id="@+id/btnOpenGoogleMaps"
+                    style="@style/TextAppearance.AppCompat.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textSize="11sp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/pay_button_generic_background_dark"
+                    android:tooltipText="Open Map for Navigation"
+                    android:contentDescription="Open map for navigation"
+                    android:text="Open Map"
+                    android:textColor="@color/white" />
+
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

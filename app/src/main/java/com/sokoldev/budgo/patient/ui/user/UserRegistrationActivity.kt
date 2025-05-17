@@ -6,8 +6,11 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -29,6 +32,7 @@ import com.sokoldev.budgo.common.utils.prefs.PreferenceHelper
 import com.sokoldev.budgo.common.utils.prefs.PreferenceKeys
 import com.sokoldev.budgo.common.viewmodels.UserViewModel
 import com.sokoldev.budgo.databinding.ActivityUserRegistrationBinding
+import com.sokoldev.budgo.patient.ui.home.HomeActivity
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -42,7 +46,7 @@ class UserRegistrationActivity : AppCompatActivity() {
 
     private val REQUEST_IMAGE_PICK_FRONT_CARD = 101
     private val REQUEST_IMAGE_PICK_BACK_CARD = 102
-
+    private var lastSelectedImageType: Int = 1
 
     private var frontCardFile: File? = null
     private var backCardFile: File? = null
@@ -66,8 +70,14 @@ class UserRegistrationActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[UserViewModel::class.java]
         helper = PreferenceHelper.getPref(this)
         getLatLon()
+        binding.edDob.apply {
+            inputType = InputType.TYPE_NULL
+            isFocusable = false
+            isClickable = true
+        }
         binding.edDob.setOnClickListener {
-            DatePickerUtils.showDatePicker(this) { date ->
+
+            DatePickerUtils.showMaterialDatePicker(this) { date ->
                 binding.edDob.setText(date)
             }
         }
@@ -85,21 +95,40 @@ class UserRegistrationActivity : AppCompatActivity() {
 
         initObserver()
 
-
     }
 
     private fun initObserver() {
-        viewModel.apiResponse.observe(this, Observer {
+        viewModel.apiResponseLogin.observe(this, Observer {
             when (it) {
                 is ApiResponse.Success -> {
                     binding.loadingView.visibility = View.GONE
                     binding.loadingView.hide()
-                    if (it.data.status) {
+                    if (it.data.data != null) {
+                        val user = it.data.data.user
+                        helper.saveCurrentUser(user)
+                        helper.saveStringValue(PreferenceKeys.PREF_USER_TOKEN, it.data.data.token)
+                        helper.setUserLogin(true)
+                        helper.setPatientUser(true)
+                        Log.d("TOOKEN", "" + it.data.data.token)
+
                         Global.showMessage(
                             binding.root.rootView,
                             it.data.message,
                             Snackbar.LENGTH_SHORT
                         )
+                        val userType = it.data.data.user.type
+                        if (userType == "1") {
+                            val intent =
+                                Intent(this@UserRegistrationActivity, HomeActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            val intent =
+                                Intent(this@UserRegistrationActivity, LoginActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+
 
                     } else {
                         Global.showErrorMessage(
@@ -121,8 +150,10 @@ class UserRegistrationActivity : AppCompatActivity() {
                 }
 
                 ApiResponse.Loading -> {
+                    Log.d("LoginActivity", "Loading state triggered")
                     binding.loadingView.visibility = View.VISIBLE
                     binding.loadingView.show()
+
                 }
             }
 
@@ -131,6 +162,7 @@ class UserRegistrationActivity : AppCompatActivity() {
 
 
     private fun checkPermissionsAndSelectImageOption(imageType: Int) {
+        lastSelectedImageType = imageType
         if (hasRequiredPermissions()) {
             selectImageOption(imageType)
         } else {
@@ -138,26 +170,66 @@ class UserRegistrationActivity : AppCompatActivity() {
         }
     }
 
-    private fun hasRequiredPermissions(): Boolean {
-        val cameraPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-        val readStoragePermission =
-            ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
 
-        return cameraPermission == PackageManager.PERMISSION_GRANTED &&
-                readStoragePermission == PackageManager.PERMISSION_GRANTED
+    private fun hasRequiredPermissions(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) { // Android 14+
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED
+            ) == PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.READ_MEDIA_IMAGES
+                    ) == PackageManager.PERMISSION_GRANTED
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // Android 13
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_MEDIA_IMAGES
+            ) == PackageManager.PERMISSION_GRANTED
+        } else { // Below Android 13
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+        }
     }
+
 
     private fun requestPermissions() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(
-                Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ),
-            REQUEST_PERMISSIONS
-        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) { // Android 14+
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.READ_MEDIA_IMAGES,
+                    Manifest.permission.READ_MEDIA_VIDEO,
+                    Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED
+                ),
+                REQUEST_PERMISSIONS
+            )
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // Android 13
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.READ_MEDIA_IMAGES,
+                    Manifest.permission.READ_MEDIA_VIDEO
+                ),
+                REQUEST_PERMISSIONS
+            )
+        } else { // Below Android 13
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ),
+                REQUEST_PERMISSIONS
+            )
+        }
     }
+
 
 
     override fun onRequestPermissionsResult(
@@ -169,6 +241,7 @@ class UserRegistrationActivity : AppCompatActivity() {
         if (requestCode == REQUEST_PERMISSIONS) {
             if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
                 Toast.makeText(this, "Permissions granted.", Toast.LENGTH_SHORT).show()
+                selectImageOption(lastSelectedImageType)
             } else {
                 Toast.makeText(this, "Permissions are required to proceed.", Toast.LENGTH_SHORT)
                     .show()
@@ -196,11 +269,25 @@ class UserRegistrationActivity : AppCompatActivity() {
     }
 
     private fun openGallery(imageType: Int) {
-        val galleryIntent = Intent(Intent.ACTION_PICK)
-        galleryIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
-        startActivityForResult(galleryIntent, imageType + REQUEST_IMAGE_PICK)
+        val pickIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // Android 13+
+            Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                type = "image/*"
+                addCategory(Intent.CATEGORY_OPENABLE)
+                putExtra(
+                    Intent.EXTRA_ALLOW_MULTIPLE,
+                    false
+                ) // Change to true for multiple selection
+            }
+        } else {
+            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).apply {
+                type = "image/*"
+            }
+        }
+        startActivityForResult(pickIntent, imageType + REQUEST_IMAGE_PICK)
     }
 
+
+    @Deprecated("This method has been deprecated in favor of using the Activity Result API\n      which brings increased type safety via an {@link ActivityResultContract} and the prebuilt\n      contracts for common intents available in\n      {@link androidx.activity.result.contract.ActivityResultContracts}, provides hooks for\n      testing, and allow receiving results in separate, testable classes independent from your\n      activity. Use\n      {@link #registerForActivityResult(ActivityResultContract, ActivityResultCallback)}\n      with the appropriate {@link ActivityResultContract} and handling the result in the\n      {@link ActivityResultCallback#onActivityResult(Object) callback}.")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
@@ -231,24 +318,40 @@ class UserRegistrationActivity : AppCompatActivity() {
     }
 
     // Utility function to extract the file from the Intent data
+    // Utility function to extract the file from the Intent data
     private fun getFileFromIntent(data: Intent): File? {
-        val selectedImageUri = data.data
+        val selectedImageUri: Uri? = when {
+            data.clipData != null -> data.clipData?.getItemAt(0)?.uri
+            data.data != null -> data.data
+            else -> null
+        }
+
         selectedImageUri?.let { uri ->
-            val filePath = getFilePathFromUri(uri)
-            return File(filePath)
+            try {
+                // Request persistable permission if needed
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    contentResolver.takePersistableUriPermission(
+                        uri,
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    )
+                }
+
+                // Use DocumentFile to access the URI
+                val docFile = androidx.documentfile.provider.DocumentFile.fromSingleUri(this, uri)
+                docFile?.let { file ->
+                    val inputStream = contentResolver.openInputStream(uri)
+                    val tempFile = File.createTempFile("temp_image", ".jpg", cacheDir)
+                    val outputStream = FileOutputStream(tempFile)
+                    inputStream?.copyTo(outputStream)
+                    inputStream?.close()
+                    outputStream.close()
+                    return tempFile
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
         return null
-    }
-
-    // Method to get the file path from the URI
-    private fun getFilePathFromUri(uri: Uri): String {
-        var path = ""
-        contentResolver.query(uri, null, null, null, null)?.use { cursor ->
-            val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-            cursor.moveToFirst()
-            path = cursor.getString(columnIndex)
-        }
-        return path
     }
 
 

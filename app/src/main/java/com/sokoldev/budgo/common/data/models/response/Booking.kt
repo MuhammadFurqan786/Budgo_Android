@@ -29,5 +29,5 @@ data class Booking(
     @SerializedName("patient_id")
     val patientId: Int?,
     @SerializedName("products")
-    val products: List<Product>
+    val products: List<ProductItem?>?
 ) : Parcelable
